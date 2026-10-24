@@ -1,0 +1,1243 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ruang TKA — Evan Haris Pramana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  --font-display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --font-body:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --font-mono:'DM Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --paper:#eef0ea;--sheet:#fafaf6;--ink:#1c2130;--muted:#5f6878;--line:#d4d8cf;
+  --hl:#ffe34d;--on-hl:#1c2130;
+  --accent:#27407a;--on-accent:#ffffff;--accent-soft:#dfe6f5;
+  --ok:#2e7d4f;--ujian:#c0392b;--on-c:#ffffff;
+  --matwa:#2b5f94;--matlan:#7a4fa3;--bindo:#2e7d4f;--bing:#a4540f;--umum:#6b7280;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#10131a;--sheet:#181d27;--ink:#eceff5;--muted:#9aa4b5;--line:#2a3240;
+  --accent:#9db4ee;--on-accent:#10131a;--accent-soft:#1f2a45;
+  --ok:#6cc58f;--ujian:#ff8b7d;--on-c:#10131a;
+  --matwa:#7fb0e0;--matlan:#c3a2e6;--bindo:#6cc58f;--bing:#f0a566;--umum:#9aa4b5;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#10131a;--sheet:#181d27;--ink:#eceff5;--muted:#9aa4b5;--line:#2a3240;
+  --accent:#9db4ee;--on-accent:#10131a;--accent-soft:#1f2a45;
+  --ok:#6cc58f;--ujian:#ff8b7d;--on-c:#10131a;
+  --matwa:#7fb0e0;--matlan:#c3a2e6;--bindo:#6cc58f;--bing:#f0a566;--umum:#9aa4b5;color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 15px/1.5 var(--font-body);
+  padding-block:18px 110px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+img{max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:980px;margin:0 auto;display:grid;gap:14px;min-width:0}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:14px;padding:14px;min-width:0}
+.card h2{font:700 1rem/1.2 var(--font-display);margin:0}
+.small{font-size:.8rem;color:var(--muted);margin:0}
+.lab{font:500 .7rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0}
+
+.hero{display:grid;gap:16px;grid-template-columns:minmax(0,1fr);align-items:end}
+@media(min-width:760px){.hero{grid-template-columns:minmax(0,1fr) 290px}}
+h1{font:800 clamp(2.2rem,8vw,3.7rem)/1 var(--font-display);letter-spacing:-.02em;margin:10px 0 0;text-wrap:balance}
+.hl{display:inline-block;background:var(--hl);color:var(--on-hl);padding:.02em .14em;border-radius:.1em;transform:rotate(-1.5deg)}
+.motto{font:600 clamp(1.1rem,3.6vw,1.45rem)/1.3 var(--font-display);margin:14px 0 12px;min-height:1.4em;text-wrap:balance}
+.motto.in{animation:fadein .5s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.cd{display:grid;gap:6px}
+.cd .row1{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.big{font:800 3.4rem/1 var(--font-display);letter-spacing:-.03em}
+.big.sm{font-size:2.2rem}
+.unit{font:600 1rem var(--font-display);color:var(--muted)}
+.cd .sub{margin:0;font-size:.9rem}
+
+.exams{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+@media(max-width:560px){.exams{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ex{display:grid;gap:2px;text-align:left;background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:0}
+.ex .s{font:700 .95rem var(--font-display);color:var(--c)}
+.ex .d{font-size:.78rem;color:var(--muted)}
+.ex .h{font:500 .78rem var(--font-mono)}
+.ex.now{border-color:var(--ujian)}
+.ex.now .h{color:var(--ujian);font-weight:500}
+.ex.past{opacity:.65}
+.ex.sel{outline:2px solid var(--accent);outline-offset:0}
+
+.main{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:900px){.main{grid-template-columns:minmax(0,1fr) 320px;align-items:start}}
+.col{display:grid;gap:14px;min-width:0}
+
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;scroll-snap-type:x proximity}
+.chip{flex:0 0 auto;scroll-snap-align:start;min-width:64px;display:grid;justify-items:center;gap:0;border:1px solid var(--line);background:var(--sheet);border-radius:12px;padding:7px 8px}
+.chip b{font:700 1.15rem/1.2 var(--font-display)}
+.chip.ex b{color:var(--ujian)}
+.chip small{color:var(--muted);font-size:.7rem;font-variant-numeric:tabular-nums}
+.chip.sel{border-color:var(--accent);background:var(--accent-soft);outline:2px solid var(--accent)}
+.chip.done{border-color:var(--ok)}
+.chip.today::after{content:"hari ini";font-size:.62rem;color:var(--accent);font-weight:700}
+
+.dh{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.dh h2{display:inline;font-size:1.15rem}
+.badge{display:inline-block;font:700 .7rem var(--font-mono);letter-spacing:.04em;padding:2px 9px;border-radius:99px;border:1px solid var(--accent);color:var(--accent);margin-left:8px;vertical-align:middle}
+.badge.ex{border-color:var(--ujian);color:var(--ujian)}
+.cnt{font:500 .9rem var(--font-mono);font-variant-numeric:tabular-nums;color:var(--muted)}
+.bar{height:9px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--ok);width:0;transition:width .25s}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:.85rem;color:var(--muted);margin:8px 0 2px}
+.row b{color:var(--ink)}
+.ujian{border:1px solid var(--ujian);color:var(--ujian);border-radius:10px;padding:8px 10px;font-weight:700;margin:10px 0 0;font-size:.9rem}
+.done-msg{color:var(--ok);font-weight:700;margin:10px 0 0}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 4px}
+.pill{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:99px;padding:5px 12px;font-weight:600;font-size:.78rem}
+.pill[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.tasks .task{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;padding:12px 0;border-top:1px solid var(--line)}
+.tasks .task.act{background:var(--accent-soft);border-radius:12px;border-top-color:transparent;padding-left:10px;padding-right:10px;margin:0 -10px}
+.tasks .task.act + .task{border-top-color:transparent}
+.tasks .task:first-child{border-top:0}
+.bub{appearance:none;-webkit-appearance:none;width:26px;height:26px;margin:0;border-radius:50%;border:2px solid var(--c);background:transparent;cursor:pointer;display:grid;place-items:center;flex:none}
+.bub:checked{background:var(--c)}
+.bub:checked::after{content:"";width:6px;height:12px;border:solid var(--on-c);border-width:0 2.5px 2.5px 0;transform:translate(0,-1px) rotate(45deg)}
+.tl{display:block;cursor:pointer;min-width:0;overflow-wrap:anywhere}
+.tag{font:700 .7rem var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--c);margin-right:8px}
+.m{display:block;font-size:.76rem;color:var(--muted)}
+.task.checked .x{text-decoration:line-through;color:var(--muted)}
+.mid{min-width:0;display:grid;gap:3px}
+.tline{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px}
+.rt{font:500 .8rem var(--font-mono);font-variant-numeric:tabular-nums;color:var(--c);min-width:64px}
+.rp{flex:1 1 70px;min-width:60px;height:6px;background:var(--line);border-radius:99px;overflow:hidden}
+.rp i{display:block;height:100%;background:var(--c);width:0;transition:width .25s linear}
+.acts{display:flex;gap:6px;align-items:center;margin-left:auto}
+.tgo{border:1px solid var(--c);background:var(--c);color:var(--on-c);border-radius:99px;font-weight:700;font-size:.78rem;padding:6px 16px;min-height:34px}
+.rst,.del{border:1px solid var(--line);background:var(--paper);border-radius:99px;font-size:.76rem;font-weight:600;padding:5px 11px;color:var(--muted);min-height:34px}
+.del{font-size:1rem;line-height:1.1;padding:3px 11px}
+.plan{display:grid;gap:10px}
+.nx{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:8px}
+.nxt{flex:1 1 200px;min-width:0;overflow-wrap:anywhere}
+.chk{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:.85rem}
+.chk input{width:18px;height:18px;margin:0;accent-color:var(--accent)}
+#eta{margin:0}
+.empty{color:var(--muted);font-size:.88rem;margin:8px 0 0}
+
+.add{margin-top:10px;border-top:1px solid var(--line);padding-top:10px}
+.add summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--accent)}
+.xf{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;margin-top:10px}
+.fld{display:grid;gap:3px;font-size:.72rem;color:var(--muted);min-width:0}
+.fld.grow{flex:1 1 200px}
+.fld.sm{width:84px}
+input[type=text],input[type=number],input[type=time],select,textarea{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px;font-size:16px;width:100%;min-width:0}
+textarea{min-height:92px;resize:vertical;font-size:.95rem}
+.err{color:var(--ujian);min-height:1.2em;margin-top:6px}
+
+.btn{border:1px solid var(--line);background:var(--sheet);color:var(--ink);border-radius:10px;padding:9px 14px;font-weight:600;font-size:.85rem;min-height:40px}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn:disabled{opacity:.45;cursor:default}
+.btn:hover:not(:disabled){filter:brightness(.96)}
+.lnk{border:0;background:none;color:var(--accent);font-weight:600;font-size:.8rem;padding:2px 4px;text-decoration:underline}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+
+.goal{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 0}
+.gl{font:500 .78rem var(--font-mono);letter-spacing:.06em;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--sheet);color:var(--muted);overflow-wrap:anywhere}
+.gl.main{background:var(--hl);border-color:var(--hl);color:var(--on-hl)}
+.uni-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+@media(max-width:760px){.uni-grid{grid-template-columns:minmax(0,1fr)}}
+.uni{border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px;min-width:0;background:var(--paper);align-content:start}
+.uni.main{border-color:var(--ink);outline:2px solid var(--hl);outline-offset:0}
+.uni .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.uni .ab{font:800 1.6rem/1 var(--font-display);letter-spacing:.02em}
+.uni .nm{font-weight:600;font-size:.9rem;line-height:1.3}
+.uni .ct{font-size:.78rem;color:var(--muted)}
+.uni .pick{border:1px solid var(--line);background:var(--sheet);border-radius:99px;font-size:.74rem;font-weight:600;padding:5px 12px;min-height:32px}
+.uni .pick[aria-pressed="true"]{background:var(--hl);border-color:var(--hl);color:var(--on-hl)}
+.uni input[type=text]{background:var(--sheet)}
+.uni .chk{margin-top:0}
+.uni .lk{font-size:.82rem;color:var(--accent);font-weight:600}
+a.lnk{display:inline-block}
+
+.timer{display:grid;gap:8px}
+.tm-disp{font:500 3.1rem/1 var(--font-mono);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tm-lab{margin:0;font-size:.85rem;color:var(--muted);overflow-wrap:anywhere}
+.timer .pills{margin:4px 0}
+
+.ljk{display:grid;gap:2px;margin-top:10px}
+.lrow{display:grid;grid-template-columns:30px minmax(0,1fr);gap:8px;align-items:center;width:100%;text-align:left;background:none;border:0;border-radius:8px;padding:4px 5px}
+.lrow.sel{background:var(--accent-soft)}
+.dl{font:500 .78rem var(--font-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.dots{display:flex;gap:5px;flex-wrap:wrap}
+.dot{display:inline-block;width:14px;height:14px;border-radius:50%;border:1.8px solid var(--c)}
+.dot.on{background:var(--c)}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0 0;padding-top:12px;border-top:1px solid var(--line)}
+.stats div{display:grid;gap:2px}
+.stats dt{font-size:.7rem;color:var(--muted)}
+.stats dd{margin:0;font:700 1.15rem/1.15 var(--font-display);font-variant-numeric:tabular-nums}
+.stats dd small{font:400 .75rem var(--font-body);color:var(--muted)}
+.meter{display:grid;grid-template-columns:54px minmax(0,1fr) 40px;gap:8px;align-items:center;margin-top:10px;font-size:.82rem}
+.meter .ml{font:700 .72rem var(--font-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--c)}
+.meter .bar>i{background:var(--c)}
+.meter .mn{font:500 .78rem var(--font-mono);text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+
+.bk{border-top:1px solid var(--line);padding:10px 0}
+.bk:first-child{border-top:0}
+.bkh{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.85rem}
+.bk p{margin:4px 0 0;font-size:.88rem;white-space:pre-wrap;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+
+.bag{display:grid;gap:0;margin-top:8px}
+.bag .task{padding:9px 0}
+
+.foot{font-size:.82rem;color:var(--muted);margin:0}
+
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:20;
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  pointer-events:none}
+.dockin{pointer-events:auto;max-width:980px;margin:0 auto;background:var(--ink);color:var(--paper);border-radius:16px;padding:10px 12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.dktime{font:500 1.6rem/1 var(--font-mono);font-variant-numeric:tabular-nums}
+.dklab{flex:1 1 120px;min-width:0;font-size:.85rem;overflow-wrap:anywhere}
+.dkbtns{display:flex;gap:6px;flex-wrap:wrap}
+.dockin button{border:1px solid currentColor;background:transparent;color:var(--paper);border-radius:10px;padding:8px 14px;font-weight:600;font-size:.82rem}
+.dockin button.p{background:var(--hl);border-color:var(--hl);color:var(--on-hl)}
+@media (prefers-reduced-motion:reduce){.motto.in{animation:none}.bar>i,.rp i{transition:none}}
+/* try-out di web */
+.qzgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}
+@media(max-width:560px){.qzgrid{grid-template-columns:minmax(0,1fr)}}
+.qzc{border:1px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:12px;display:grid;gap:6px;background:var(--paper);min-width:0}
+.qzc b{font:700 1rem var(--font-display)}
+.qzc .m2{font-size:.78rem;color:var(--muted)}
+.qzc .st{font-size:.85rem}
+.qz{position:fixed;inset:0;z-index:60;background:var(--paper);display:flex;flex-direction:column;height:100%;padding-top:env(safe-area-inset-top,0px)}
+.qz[hidden]{display:none!important}
+.qz-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px max(14px,env(safe-area-inset-left,0px)) 8px max(14px,env(safe-area-inset-right,0px));border-bottom:1px solid var(--line);background:var(--sheet)}
+.qz-top .tt{flex:1 1 140px;min-width:0}
+.qz-top .tt b{display:block;font:700 1rem var(--font-display);color:var(--c)}
+.qz-top .tt span{font-size:.78rem;color:var(--muted)}
+.qz-time{font:500 1.5rem/1 var(--font-mono);font-variant-numeric:tabular-nums}
+.qz-time.late{color:var(--ujian)}
+.qz-nums{display:flex;gap:6px;overflow-x:auto;padding:8px max(14px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line);background:var(--sheet)}
+.qz-n{flex:0 0 auto;width:36px;height:36px;border-radius:9px;border:1.5px solid var(--line);background:var(--paper);font:600 .8rem var(--font-mono);display:grid;place-items:center;position:relative}
+.qz-n.ans{background:var(--c);border-color:var(--c);color:var(--on-c)}
+.qz-n.cur{outline:3px solid var(--accent);outline-offset:1px}
+.qz-n.fl::after{content:"";position:absolute;top:-4px;right:-4px;width:11px;height:11px;border-radius:50%;background:#e0a100;border:2px solid var(--sheet)}
+.qz-n.ok{background:var(--ok);border-color:var(--ok);color:var(--on-c)}
+.qz-n.bad{background:var(--ujian);border-color:var(--ujian);color:var(--on-c)}
+.qz-n.skip{background:var(--line);color:var(--muted)}
+.qz-main{flex:1 1 auto;overflow-y:auto;padding:12px max(14px,env(safe-area-inset-left,0px));-webkit-overflow-scrolling:touch}
+.qz-in{max-width:760px;margin:0 auto;display:grid;gap:12px}
+.qz-stim{border:1px solid var(--line);border-radius:12px;background:var(--sheet);padding:10px 12px}
+.qz-stim summary{cursor:pointer;font-weight:700;font-size:.9rem;color:var(--accent)}
+.qz-stim .tx{margin-top:8px;max-height:34vh;overflow-y:auto;font-size:.92rem}
+.qz-stim .tx p{margin:0 0 8px}
+.qz-stim .tx p.poem{margin:0;font-style:italic}
+.qz-q{border:1px solid var(--line);border-radius:12px;background:var(--sheet);padding:12px}
+.qz-q .no{font:700 .72rem var(--font-mono);letter-spacing:.06em;color:var(--c);text-transform:uppercase}
+.qz-q .tag{font-size:.74rem;color:var(--muted);margin-left:6px;letter-spacing:0;text-transform:none}
+.qz-q .sm{font-weight:600;margin:6px 0 10px}
+.qz-opt{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:10px;align-items:start;padding:10px;border:1.5px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;background:var(--paper)}
+.qz-opt.sel{border-color:var(--c);background:var(--accent-soft)}
+.qz-opt input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--c)}
+.qz-opt .lt{font:700 .85rem var(--font-mono);color:var(--c)}
+.qz-opt span.tx2{overflow-wrap:anywhere}
+.qz-st{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.qz-st:first-of-type{border-top:0}
+.qz-bs{display:flex;gap:6px}
+.qz-bs label{display:inline-flex;gap:5px;align-items:center;border:1.5px solid var(--line);border-radius:99px;padding:6px 12px;font-size:.82rem;font-weight:600;cursor:pointer;background:var(--paper)}
+.qz-bs label.sel{border-color:var(--c);background:var(--accent-soft)}
+.qz-bs input{accent-color:var(--c)}
+.qz-nav{display:flex;gap:8px;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--sheet)}
+.qz-nav .btn{flex:1 1 0;min-width:0}
+.qz-nav .btn.on{background:#e0a100;border-color:#e0a100;color:#1c2130}
+.qz-box{border:1px solid var(--line);border-radius:12px;background:var(--sheet);padding:14px}
+.qz-score{font:800 3rem/1 var(--font-display)}
+.qz-bar{display:grid;grid-template-columns:minmax(0,1fr) 48px;gap:8px;align-items:center;margin-top:8px;font-size:.82rem}
+.qz-bar .bar>i{background:var(--c)}
+.qz-res{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.qz-hist{font-size:.82rem;color:var(--muted);margin:6px 0 0;padding-left:18px}
+.qz-ans{font-size:.88rem;margin:4px 0}
+.qz-exp{border-left:4px solid var(--accent);background:var(--accent-soft);padding:8px 10px;border-radius:8px;font-size:.88rem;margin-top:8px}
+.qz-ok{color:var(--ok);font-weight:700}.qz-bad{color:var(--ujian);font-weight:700}
+
+/* Visual refresh: TKA study dashboard */
+:root{
+  --paper:#f1f4fb;
+  --sheet:#ffffff;
+  --ink:#17213b;
+  --muted:#66718a;
+  --line:#e0e6f1;
+  --hl:#ffe36b;
+  --on-hl:#17213b;
+  --accent:#5268e8;
+  --on-accent:#ffffff;
+  --accent-soft:#edf0ff;
+  --ok:#22966b;
+  --ujian:#e75b65;
+  --on-c:#ffffff;
+  --matwa:#3977c7;
+  --matlan:#8859c7;
+  --bindo:#24966b;
+  --bing:#d57a2a;
+  --umum:#7b8498;
+}
+body{
+  background:
+    radial-gradient(ellipse at 8% 0%, rgba(115,137,255,.12), transparent 32rem),
+    radial-gradient(ellipse at 100% 18%, rgba(255,211,94,.12), transparent 26rem),
+    var(--paper);
+  padding-top:24px;
+}
+.wrap{max-width:1120px;gap:18px}
+.card{
+  border:1px solid color-mix(in srgb,var(--line) 82%,transparent);
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 5px 18px rgba(31,48,92,.045);
+  transition:box-shadow .2s ease,transform .2s ease;
+}
+.card h2{font-size:1.05rem;letter-spacing:-.02em}
+.hero{
+  position:relative;isolation:isolate;overflow:hidden;
+  background:linear-gradient(125deg,#18264c 0%,#273d78 58%,#5268c9 100%);
+  color:#fff;border-radius:26px;padding:clamp(22px,4vw,42px);
+  min-height:250px;align-items:center;
+  box-shadow:0 18px 42px rgba(35,53,108,.2);
+}
+.hero:before,.hero:after{
+  content:"";position:absolute;z-index:-1;border-radius:50%;pointer-events:none;
+}
+.hero:before{
+  width:300px;height:300px;right:15%;top:-190px;
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 0 0 28px rgba(255,255,255,.035),0 0 0 58px rgba(255,255,255,.025);
+}
+.hero:after{
+  width:190px;height:190px;right:-55px;bottom:-110px;
+  background:rgba(255,227,107,.12);
+}
+.hero .lab{color:#cbd6ff}
+h1{font-size:clamp(2.25rem,6vw,4.4rem);line-height:.98;letter-spacing:-.045em;margin-top:14px}
+.hl{border-radius:8px;padding:.04em .16em;transform:rotate(-2deg);box-shadow:3px 4px 0 rgba(0,0,0,.12)}
+.motto{font-size:clamp(1.15rem,3vw,1.65rem);margin:20px 0 14px;color:#fff}
+.hero .btn{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.35);border-radius:999px}
+.hero .btn:hover{background:rgba(255,255,255,.18)}
+.hero .goal{margin-top:18px}
+.hero .gl{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22);color:#eef1ff}
+.hero .gl.main{background:var(--hl);border-color:var(--hl);color:#17213b}
+.hero .cd{
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.2);
+  border-radius:20px;padding:20px;backdrop-filter:blur(8px);
+  box-shadow:none;color:#fff;min-height:155px;align-content:center;
+}
+.hero .cd .lab,.hero .cd .unit,.hero .cd .sub{color:#dce4ff}
+.hero .cd .big{color:#fff;font-size:4rem}
+.hero .cd .big.sm{font-size:2.4rem}
+.exams{gap:10px}
+.ex{
+  border:1px solid var(--line);border-radius:16px;padding:14px;
+  box-shadow:0 3px 12px rgba(31,48,92,.035);
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.ex:hover,.uni:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(31,48,92,.09)}
+.ex .s{font-size:1rem}
+.ex.now{background:linear-gradient(145deg,#fff5f4,#fff);border-color:var(--ujian);box-shadow:0 0 0 2px rgba(231,91,101,.08)}
+.ex.past{opacity:.7}
+.ex.sel{outline:2px solid var(--accent);outline-offset:1px}
+.chip{border-radius:14px;min-width:70px;padding:9px 10px;transition:background .15s ease,border-color .15s ease}
+.chip.sel{background:var(--accent-soft);box-shadow:0 3px 10px rgba(82,104,232,.1)}
+.dh{margin-bottom:14px}
+.dh h2{font-size:1.2rem}
+.badge{border-radius:99px;padding:4px 10px;font-size:.66rem}
+.bar{height:10px;background:color-mix(in srgb,var(--line) 75%,transparent)}
+.bar>i{border-radius:99px;background:linear-gradient(90deg,#4cbb8c,#23966b)}
+.pill{border-radius:999px;padding:7px 13px;transition:background .15s ease,color .15s ease}
+.pill[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.tasks .task{padding:15px 0;gap:13px}
+.tasks .task.act{border-radius:14px}
+.bub{width:27px;height:27px;transition:transform .15s ease}
+.bub:hover{transform:scale(1.06)}
+.tgo,.rst,.del{border-radius:999px}
+.tgo{box-shadow:0 3px 8px color-mix(in srgb,var(--c) 18%,transparent)}
+.btn{border-radius:12px;padding:10px 15px;transition:transform .15s ease,box-shadow .15s ease}
+.btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 5px 12px rgba(31,48,92,.09)}
+.btn.pri{box-shadow:0 4px 10px rgba(82,104,232,.18)}
+.uni-grid{gap:12px}
+.uni{border-radius:17px;padding:16px;transition:transform .18s ease,box-shadow .18s ease}
+.uni.main{outline:2px solid var(--hl);border-radius:17px}
+.uni .ab{font-size:1.8rem;letter-spacing:-.04em}
+.uni .pick{border-radius:999px;padding:7px 13px}
+.timer .tm-disp{font-size:3.4rem;letter-spacing:-.055em}
+#tmGo{min-width:105px}
+.stats{gap:12px}
+.stats div{background:var(--paper);border-radius:13px;padding:10px}
+.stats dd{font-size:1.25rem}
+.meter{margin-top:13px}
+.bk{padding:13px 0}
+.dockin{max-width:1120px;border-radius:18px;background:#17213b;padding:12px 15px;box-shadow:0 10px 30px rgba(15,24,51,.28)}
+.dockin button{border-radius:999px}
+.dockin button.p{background:var(--hl);border-color:var(--hl)}
+.qz-top,.qz-nums,.qz-nav{padding-top:12px;padding-bottom:12px}
+.qz-q,.qz-box,.qz-stim{border-radius:16px}
+.qz-opt{border-radius:13px;transition:border-color .15s ease,background .15s ease}
+.qz-opt:hover{border-color:var(--accent)}
+.qz-n{border-radius:10px}
+.add{padding-top:14px}
+.add summary{padding:3px 0}
+input[type=text],input[type=number],input[type=time],select,textarea{border-radius:12px}
+:focus-visible{outline-offset:3px}
+@media(max-width:760px){
+  body{padding:12px 12px 120px}
+  .wrap{gap:13px}
+  .hero{padding:23px 20px;border-radius:22px;gap:20px}
+  h1{font-size:clamp(2.25rem,10vw,3.4rem)}
+  .hero .cd{min-height:0;padding:17px}
+  .hero .cd .big{font-size:3.2rem}
+  .card{padding:16px;border-radius:17px}
+  .exams{gap:8px}
+  .ex{padding:12px;border-radius:14px}
+  .dockin{gap:9px;border-radius:16px}
+  .dktime{font-size:1.35rem}
+  .dockin button{padding:8px 11px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <p class="lab">Persiapan TKA · Target SNBP</p>
+      <h1><span class="hl">EVAN</span> HARIS PRAMANA</h1>
+      <div class="goal" id="goal" aria-label="Kampus tujuan"></div>
+      <p class="motto in" id="motto">Bisa. Pasti bisa.</p>
+      <button class="btn" type="button" data-act="motto">Semangat lagi</button>
+    </div>
+    <div class="card cd" id="cd"></div>
+  </header>
+
+  <section class="exams" id="exams" aria-label="Jadwal ujian"></section>
+
+  <section class="card campus" aria-label="Kampus impian">
+    <div class="head"><h2>Kampus impian</h2><a class="lnk" href="https://snpmb.id" target="_blank" rel="noopener">Info resmi SNPMB</a></div>
+    <p class="small" style="margin-top:4px">Pilih satu kampus sebagai target utama dan tulis jurusan incaranmu. Cek syarat dan jadwal terbaru hanya di situs resmi.</p>
+    <div class="uni-grid" id="uni"></div>
+  </section>
+
+  <section class="card" id="qzCard" aria-label="Try-out di web">
+    <div class="head"><h2>Try-out di web</h2></div>
+    <p class="small" style="margin-top:4px">Kerjakan langsung di sini. Timer lunak: boleh lanjut setelah waktu habis, hanya ditandai terlambat. Jawaban tersimpan di perangkat ini.</p>
+    <div class="qzgrid" id="qzGrid"></div>
+  </section>
+
+  <div class="main">
+    <div class="col">
+      <div class="chips" id="chips" role="group" aria-label="Pilih tanggal"></div>
+
+      <section class="card plan" id="planCard" aria-label="Rencana timer">
+        <div id="planNext"></div>
+        <div class="btnrow">
+          <button type="button" class="btn pri" id="seqBtn" data-act="seq">Jalankan semua urut</button>
+          <button type="button" class="btn" id="sumBtn" data-act="sum">Salin ringkasan hari ini</button>
+        </div>
+        <p class="small" id="eta"></p>
+        <details class="add" style="margin-top:0">
+          <summary>Atur waktu dan timer</summary>
+          <div class="xf">
+            <label class="fld"><span>Mulai belajar jam</span><input id="stime" type="time"></label>
+            <label class="fld"><span>Istirahat antar tugas</span>
+              <select id="sbrk"><option value="0">Tanpa istirahat</option><option value="5">5 menit</option><option value="10">10 menit</option><option value="15">15 menit</option></select></label>
+          </div>
+          <label class="chk"><input type="checkbox" id="sauto"> Centang tugas otomatis saat timer habis</label>
+          <label class="chk"><input type="checkbox" id="ssnd"> Bunyi saat timer selesai</label>
+        </details>
+      </section>
+
+      <section class="card" id="dayCard" aria-label="Tugas harian">
+        <div id="dayHead"></div>
+        <div class="pills" id="filters" role="group" aria-label="Filter mapel"></div>
+        <div class="tasks" id="tasks"></div>
+        <details class="add" id="addBox">
+          <summary>Tambah tugas sendiri</summary>
+          <form id="xf" class="xf" autocomplete="off">
+            <label class="fld"><span>Mapel</span>
+              <select id="xs"><option>Matwa</option><option>Matlan</option><option>Bindo</option><option>Bing</option><option>Umum</option></select></label>
+            <label class="fld grow"><span>Tugas</span>
+              <input id="xt" type="text" maxlength="120" placeholder="Contoh: ulang soal limit nomor 5-10"></label>
+            <label class="fld sm"><span>Menit</span>
+              <input id="xm" type="number" min="0" max="300" step="5" value="30" inputmode="numeric"></label>
+            <button class="btn pri" type="submit">Tambah</button>
+          </form>
+          <p class="small err" id="xerr" role="alert"></p>
+        </details>
+      </section>
+
+      <section class="card" id="bagCard" hidden>
+        <div class="head"><h2>Perlengkapan ujian</h2><span class="cnt" id="bagCnt"></span></div>
+        <div class="bag" id="bag"></div>
+      </section>
+
+      <section class="card" id="noteCard">
+        <div class="head"><h2>Catatan kesalahan hari ini</h2></div>
+        <label for="note" class="small" style="display:block;margin:6px 0">Tulis soal yang salah, penyebabnya, dan rumus atau aturan yang benar.</label>
+        <textarea id="note" placeholder="Contoh: soal 12, lupa syarat sisa pembagian f(x) oleh (x − a)(x − b) berbentuk px + q."></textarea>
+      </section>
+    </div>
+
+    <aside class="col">
+      <section class="card timer" aria-label="Timer fokus">
+        <h2>Timer fokus</h2>
+        <div class="tm-disp" id="tmDisp">25:00</div>
+        <p class="tm-lab" id="tmLab">Fokus bebas</p>
+        <div class="pills" id="presets" role="group" aria-label="Durasi">
+          <button type="button" class="pill" data-act="preset" data-m="15">15 mnt</button>
+          <button type="button" class="pill" data-act="preset" data-m="25">25 mnt</button>
+          <button type="button" class="pill" data-act="preset" data-m="45">45 mnt</button>
+          <button type="button" class="pill" data-act="preset" data-m="60">60 mnt</button>
+        </div>
+        <div class="btnrow">
+          <button type="button" class="btn pri" id="tmGo" data-act="tmgo">Mulai</button>
+          <button type="button" class="btn" data-act="tmreset">Hentikan</button>
+        </div>
+        <p class="small" id="tmToday"></p>
+      </section>
+
+      <section class="card" aria-label="Kemajuan">
+        <div class="head"><h2>LJK kemajuan</h2><span class="cnt" id="allPct"></span></div>
+        <p class="small" style="margin-top:4px">Satu lingkaran satu tugas. Ketuk baris untuk membuka harinya.</p>
+        <div class="ljk" id="ljk"></div>
+        <dl class="stats" id="stats"></dl>
+      </section>
+
+      <section class="card" aria-label="Kemajuan per mapel">
+        <h2>Per mapel</h2>
+        <div id="meters"></div>
+      </section>
+
+      <section class="card" aria-label="Buku kesalahan">
+        <div class="head"><h2>Buku kesalahan</h2><button type="button" class="btn" id="copyAll" data-act="copy">Salin semua</button></div>
+        <div id="bookList" style="margin-top:6px"></div>
+      </section>
+
+      <div class="btnrow"><button type="button" class="btn" id="reset" data-act="reset">Hapus semua centang</button></div>
+    </aside>
+  </div>
+
+  <p class="foot">Centang, catatan, tugas tambahan, dan timer tersimpan di perangkat ini. Pada hari ujian jangan belajar materi baru, cukup baca ringkasan dan catatan kesalahan.</p>
+</div>
+
+<div class="qz" id="qz" role="dialog" aria-modal="true" aria-label="Try-out" hidden></div>
+<div class="dock" id="dock" hidden>
+  <div class="dockin" role="group" aria-label="Timer berjalan">
+    <span class="dktime" id="dkTime">25:00</span>
+    <span class="dklab" id="dkLab">Fokus bebas</span>
+    <span class="dkbtns">
+      <button type="button" class="p" id="dkGo" data-act="tmgo">Jeda</button>
+      <button type="button" id="dkSkip" data-act="skipbrk" hidden>Lewati</button>
+      <button type="button" id="dkCheck" data-act="dkcheck" hidden>Centang tugas</button>
+      <button type="button" id="dkStop" data-act="tmreset">Hentikan</button>
+    </span>
+  </div>
+</div>
+
+<script>
+(function(){
+var SUBJ=['Matwa','Matlan','Bindo','Bing'];
+var COL={Matwa:'var(--matwa)',Matlan:'var(--matlan)',Bindo:'var(--bindo)',Bing:'var(--bing)',Ujian:'var(--ujian)',Umum:'var(--umum)'};
+var DAYS=[
+{d:21,n:'Rabu',tag:'Sudah dikerjakan',t:[
+['Bindo','Baca Bindo Titik Lemah bagian 1 (kata serapan)',20],
+['Matwa','Baca Matwa Titik Lemah bagian 1-2 (daerah hasil fungsi, deret geometri)',40],
+['Matwa','Kerjakan soal 1-16',45]]},
+{d:22,n:'Kamis',tag:'H-4 Bindo',t:[
+['Matlan','Suku banyak: baca Matlan Titik Lemah bagian 2 (teorema sisa), lalu kerjakan soal 6-11',60],
+['Matwa','Baca Matwa Titik Lemah bagian 3-4 (bunga, data), lalu kerjakan soal 17-30',70],
+['Bindo','Baca Materi Lengkap bagian A1-A2 (kata serapan dalam teks, ide pokok, inferensi)',45],
+['Bing','Latihan Bing per Content: Set Kamis (Content II-VII), soal 1-12',35],
+['Umum','Tidur 7 jam atau lebih',0]]},
+{d:23,n:'Jumat',tag:'H-3 Bindo',t:[
+['Bindo','Bindo Teks Panjang: Teks 1 sampai 3 (soal 1-13) 40 menit, lalu koreksi 15 menit',55],
+['Bindo','Baca Bindo Titik Lemah bagian 2-3 (kata baku, kalimat efektif), lalu soal 15-40',30],
+['Matlan','Matriks: baca bagian 1, lalu kerjakan soal 1-5',60],
+['Matwa','Matwa Sesuai Kisi Resmi: SPL, program linear, pencacahan, peluang (soal 4-7 dan 29-31)',40],
+['Bing','Latihan Bing per Content: Set Jumat (Content VIII-X), soal 13-18, lalu ulangi soal salah Set Kamis',30],
+['Umum','Tidur 7 jam atau lebih',0]]},
+{d:24,n:'Sabtu',tag:'H-2 Bindo',t:[
+['Bindo','TRY-OUT BINDO (file TryOut_Bindo_30_Soal): 30 soal dalam 75 menit tanpa buka catatan, lalu koreksi dan isi peta kelemahan 15 menit',90],
+['Matlan','Domain, range, asimtot horizontal: baca bagian 3, lalu kerjakan soal 12-17',60],
+['Matlan','Ulangi soal matriks dan suku banyak yang paling sering salah (soal 1-11)',15],
+['Matwa','Matwa Sesuai Kisi Resmi: geometri dan transformasi (soal 18-22); trigonometri (soal 23-25) dikerjakan 25 Okt',30],
+['Bing','Latihan Bing per Content: Set Sabtu (Content XI-XIII), soal 19-24, lalu ulangi soal salah sebelumnya',30],
+['Umum','Tidur 7 jam atau lebih',0]]},
+{d:25,n:'Minggu',tag:'H-1 Bindo (ringan)',t:[
+['Bindo','Bindo Tanda Baca Koma dan Titik: baca aturan (10 menit), kerjakan soal 1-30 (35 menit), lalu baca catatan kesalahan dan tabel serapan (15 menit)',60],
+['Matlan','Grafik fungsi trigonometri: baca bagian 4, lalu kerjakan soal 18-21',45],
+['Matwa','Matwa Sesuai Kisi Resmi: trigonometri (soal 23-25), lalu baca ringkasan rumus (tanpa materi baru)',40],
+['Bing','Latihan Bing per Content: Set Minggu (Content XIV-XVI), soal 25-30, lalu ulangi soal salah sebelumnya',30],
+['Umum','Siapkan kartu ujian, alat tulis, dan pakaian',10],
+['Umum','Tidur sebelum 21.30',0]]},
+{d:26,n:'Senin',tag:'UJIAN BINDO',u:'Hari ini ujian Bindo',t:[
+['Bindo','Pagi: baca catatan kesalahan dan daftar serapan saja',20],
+['Ujian','Ujian Bindo',0],
+['Umum','Makan dan istirahat minimal 1 jam',60],
+['Bing','Les Bing, lalu TRY-OUT BING (file TryOut_Bing_30_Soal): 30 soal dalam 60 menit, koreksi dan isi peta kelemahan 20 menit',80],
+['Matlan','Vektor: baca bagian 5, lalu kerjakan soal 22-25',60],
+['Matwa','Ulangi soal Matwa yang salah: range, deret, bunga, data (cukup 20 menit)',20],
+['Umum','Tidur 7 jam atau lebih',0]]},
+{d:27,n:'Selasa',tag:'UJIAN BING',u:'Hari ini ujian Bing',t:[
+['Bing','Pagi: baca Peta Content dan catatan kesalahan Bing, tanpa soal baru',20],
+['Ujian','Ujian Bing',0],
+['Umum','Istirahat 1 jam',60],
+['Matwa','TRY-OUT MATWA (file TryOut_Matwa_30_Soal): 30 soal dalam 90 menit tanpa buka catatan dan kalkulator, lalu koreksi dan isi peta kelemahan 30 menit',120],
+['Matlan','Garis singgung lingkaran: baca bagian 6, lalu kerjakan soal 26-29 (cukup 2 soal jika waktu mepet)',40],
+['Umum','Tidur 7 jam atau lebih',0]]},
+{d:28,n:'Rabu',tag:'UJIAN MATWA',u:'Hari ini ujian Matwa',t:[
+['Matwa','Pagi: baca ringkasan rumus saja (range, deret, bunga, data, peluang)',20],
+['Ujian','Ujian Matwa',0],
+['Umum','Istirahat 1 jam',60],
+['Matlan','TRY-OUT MATLAN (file TryOut_Matlan_30_Soal): 30 soal dalam 90 menit tanpa buka catatan dan kalkulator, lalu koreksi dan isi peta kelemahan 30 menit',120],
+['Matlan','Ulangi soal Matlan yang salah di try-out, lalu tulis lembar rumus 1 halaman untuk dibaca besok pagi',40],
+['Matlan','Baca ulang peta kelemahan dan catatan kesalahan Matlan sebelum tidur',15],
+['Umum','Tidur sebelum 21.30',0]]},
+{d:29,n:'Kamis',tag:'UJIAN MATLAN',u:'Hari ini ujian Matlan',t:[
+['Matlan','Pagi: baca lembar rumus (matriks, teorema sisa, range dan asimtot, grafik trigonometri, vektor, garis singgung, limit) dan catatan kesalahan',30],
+['Ujian','Ujian Matlan',0],
+['Umum','Selesai. Istirahat dan rayakan.',0]]}
+];
+var BAG=['Kartu ujian dan kartu identitas','Alat tulis','Botol minum','Pakaian ujian, disiapkan semalam','Sarapan dan cek jam berangkat','Cek lokasi dan jam masuk ruang ujian'];
+var MOT=['Bisa. Pasti bisa.','Evan Haris Pramana, kamu istimewa.','Lolos SNBP dimulai dari satu centang hari ini.','Satu soal lagi, satu langkah lebih dekat.','Pelan tapi konsisten, hasilnya luar biasa.','Kursi kampus impianmu sedang menunggu.','Kamu sudah sejauh ini. Lanjutkan.','Satu tugas hari ini, satu langkah menuju UGM, ITB, atau ITS.','Bayangkan hari pertamamu di kampus impian. Lanjutkan.'];
+var UNI=[
+{id:'ugm',ab:'UGM',nm:'Universitas Gadjah Mada',ct:'Yogyakarta, DI Yogyakarta',url:'https://www.ugm.ac.id'},
+{id:'itb',ab:'ITB',nm:'Institut Teknologi Bandung',ct:'Bandung, Jawa Barat',url:'https://www.itb.ac.id'},
+{id:'its',ab:'ITS',nm:'Institut Teknologi Sepuluh Nopember',ct:'Surabaya, Jawa Timur',url:'https://www.its.ac.id'}
+];
+
+/* storage */
+var KEY='tka-jadwal-v1',store={};
+try{var raw=localStorage.getItem(KEY);if(raw)store=JSON.parse(raw)||{};}catch(e){store={};}
+['c','n','x','g','f','t','s','o','u','q'].forEach(function(k){if(!store[k]||typeof store[k]!=='object')store[k]={};});
+if(store.o.auto===undefined)store.o.auto=1;
+if(store.o.brk===undefined)store.o.brk=5;
+if(store.o.snd===undefined)store.o.snd=1;
+/* jadwal diperbarui mulai Kamis 22 Okt: tugas Rabu yang sudah dikerjakan otomatis tercentang, catatan dan target kampus tetap */
+if(store.sv!==3){store.c={'21-0':1,'21-1':1,'21-2':1};store.g={};store.t={};store.s={};delete store.r;store.sv=3;try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){}}
+
+/* helpers */
+function $(i){return document.getElementById(i);}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function getDay(d){return DAYS.filter(function(x){return x.d===d;})[0];}
+function fmt(m){if(m<=0)return'selesai';return fmtM(m);}
+function fmtM(m){if(m<=0)return'0 menit';var h=Math.floor(m/60),r=m%60;return((h?h+' jam ':'')+(r?r+' menit':'')).trim();}
+function dleft(d){var n=new Date();var a=Date.UTC(n.getFullYear(),n.getMonth(),n.getDate());return Math.round((Date.UTC(2026,9,d)-a)/864e5);}
+function exSub(d){return d.t.filter(function(t){return t[0]==='Ujian';})[0][1].replace('Ujian ','');}
+function tasks(day){
+  var a=day.t.map(function(t,i){return{k:day.d+'-'+i,s:t[0],t:t[1],m:t[2],c:false};});
+  var xs=Array.isArray(store.x[day.d])?store.x[day.d]:[];
+  xs.forEach(function(u){a.push({k:'x'+u.id,s:u.s,t:u.t,m:u.m,c:true,id:u.id});});
+  return a;
+}
+function stat(day){var done=0,left=0,doneM=0,ts=tasks(day);ts.forEach(function(t){if(store.c[t.k]){done++;doneM+=t.m;}else left+=t.m;});return{done:done,total:ts.length,left:left,doneM:doneM};}
+function full(d){var s=stat(d);return s.total>0&&s.done===s.total;}
+function timed(t){return t.m>0&&t.s!=='Ujian';}
+function hm(min){min=((Math.round(min)%1440)+1440)%1440;var h=Math.floor(min/60),m=min%60;return(h<10?'0':'')+h+':'+(m<10?'0':'')+m;}
+function startMin(day){var v=store.s[day.d]||(day.u?'06:00':'15:00');var p=String(v).split(':');return(parseInt(p[0],10)||0)*60+(parseInt(p[1],10)||0);}
+function clocks(day,ts){
+  var cur=startMin(day),map={};
+  ts.forEach(function(t,i){
+    if(!timed(t))return;
+    map[t.k]=hm(cur)+'–'+hm(cur+t.m);cur+=t.m;
+    if(SUBJ.indexOf(t.s)>-1&&ts.slice(i+1).some(timed))cur+=store.o.brk;
+  });
+  return map;
+}
+function findTask(k){var f=null;DAYS.forEach(function(d){tasks(d).forEach(function(t){if(t.k===k)f=t;});});return f;}
+function nextTask(d,afterKey){
+  var ts=tasks(getDay(d)),pass=(afterKey==null);
+  for(var i=0;i<ts.length;i++){
+    var t=ts[i];
+    if(!pass){if(t.k===afterKey)pass=true;continue;}
+    if(timed(t)&&!store.c[t.k])return t;
+  }
+  return null;
+}
+function spentOf(k){return(T.key===k&&!T.brk&&(T.mode==='run'||T.mode==='pause'))?elapsed():(store.t[k]||0);}
+function rowT(t){var tot=t.m*60,sp=Math.min(tot,spentOf(t.k));return{txt:'sisa '+mmss(tot-sp),pct:tot?Math.round(sp/tot*100):0};}
+function goLabel(k){if(T.key===k&&T.mode==='run')return'Jeda';return spentOf(k)>0?'Lanjut':'Mulai';}
+function renderPlan(day,ts){
+  var nt=nextTask(sel,null),h;
+  if(nt){
+    h='<p class="lab">Berikutnya</p><div class="nx" style="--c:'+COL[nt.s]+'"><div class="nxt"><span class="tag">'+nt.s+'</span>'+esc(nt.t)+'<span class="m">'+nt.m+' menit</span></div>'+
+      '<button type="button" class="btn pri" data-act="tgo" data-k="'+nt.k+'" data-m="'+nt.m+'">'+goLabel(nt.k)+'</button></div>';
+  }else h='<p class="done-msg" style="margin:0">Semua tugas ber-timer di hari ini sudah selesai.</p>';
+  $('planNext').innerHTML=h;
+  var run=!!seq&&seq.day===sel;
+  var sb=$('seqBtn');sb.disabled=!nt||run;sb.textContent=run?'Rangkaian berjalan':'Jalankan semua urut';
+  var left=0,cnt=0;
+  ts.forEach(function(t){if(timed(t)&&SUBJ.indexOf(t.s)>-1&&!store.c[t.k]){left+=Math.max(0,Math.round((t.m*60-spentOf(t.k))/60));cnt++;}});
+  var eta;
+  if(left<=0)eta='Semua waktu belajar ber-timer hari ini sudah terpenuhi.';
+  else{
+    eta='Sisa waktu belajar ber-timer: '+fmtM(left)+'.';
+    if(sel===today){var n=new Date(),tot=left+(cnt>1?(cnt-1)*store.o.brk:0);eta+=' Jika mulai sekarang, selesai sekitar '+hm(n.getHours()*60+n.getMinutes()+tot)+'.';}
+  }
+  $('eta').textContent=eta;
+  $('stime').value=hm(startMin(day));
+  $('sbrk').value=String(store.o.brk);$('sauto').checked=!!store.o.auto;$('ssnd').checked=!!store.o.snd;
+}
+
+/* date state */
+var off=-dleft(21),today=null,ref=null,sel=21,flt='Semua',lastNoteDay=null;
+if(off>=0&&off<=8){today=21+off;ref=today;sel=today;}else if(off>8){ref=29;sel=29;}
+function streak(){
+  if(ref==null)return 0;
+  var i=DAYS.map(function(d){return d.d;}).indexOf(ref);
+  if(!full(DAYS[i]))i--;
+  var c=0;while(i>=0&&full(DAYS[i])){c++;i--;}
+  return c;
+}
+
+/* renderers */
+function renderCD(){
+  var nx=null;DAYS.forEach(function(d){if(d.u&&!nx&&dleft(d.d)>=0)nx=d;});
+  var h;
+  if(!nx){h='<p class="lab">Ujian</p><div class="row1"><span class="big sm">Selesai</span></div><p class="sub">Semua ujian sudah lewat. Kamu sudah berusaha maksimal, Evan.</p>';}
+  else{
+    var n=dleft(nx.d);
+    h='<p class="lab">Ujian berikutnya</p><div class="row1">'+(n>0?'<span class="big">'+n+'</span><span class="unit">hari lagi</span>':'<span class="big sm">Hari ini</span>')+'</div>'+
+      '<p class="sub"><b>'+esc(exSub(nx))+'</b> · '+nx.n+', '+nx.d+' Okt'+(n===0?'. Tarik napas, kamu sudah siap.':'')+'</p>';
+  }
+  $('cd').innerHTML=h;
+}
+function renderExams(){
+  var h='';
+  DAYS.forEach(function(d){
+    if(!d.u)return;
+    var n=dleft(d.d),sub=exSub(d),st=n>0?'H-'+n:(n===0?'Hari ini':'Selesai');
+    h+='<button type="button" class="ex'+(n===0?' now':'')+(n<0?' past':'')+(d.d===sel?' sel':'')+'" style="--c:'+COL[sub]+'" data-act="day" data-scroll="1" data-d="'+d.d+'"><span class="s">'+esc(sub)+'</span><span class="d">'+d.n.slice(0,3)+', '+d.d+' Okt</span><span class="h">'+st+'</span></button>';
+  });
+  $('exams').innerHTML=h;
+}
+function renderChips(){
+  var h='';
+  DAYS.forEach(function(d){
+    var s=stat(d);
+    var cls='chip'+(d.d===sel?' sel':'')+(full(d)?' done':'')+(d.d===today?' today':'')+(d.u?' ex':'');
+    h+='<button type="button" class="'+cls+'" data-act="day" data-d="'+d.d+'" aria-pressed="'+(d.d===sel)+'"><b>'+d.d+'</b><small>'+d.n.slice(0,3)+'</small><small>'+s.done+'/'+s.total+'</small></button>';
+  });
+  $('chips').innerHTML=h;
+}
+function renderDay(){
+  var day=getDay(sel),ts=tasks(day),s=stat(day),pct=s.total?Math.round(s.done/s.total*100):0;
+  var h='<div class="dh"><div><h2>'+day.n+', '+day.d+' Okt</h2><span class="badge'+(day.u?' ex':'')+'">'+esc(day.tag)+'</span></div><span class="cnt">'+s.done+'/'+s.total+'</span></div>';
+  h+='<div class="bar"><i style="width:'+pct+'%"></i></div>';
+  h+='<div class="row"><span>Sisa waktu belajar</span><b>'+fmt(s.left)+'</b></div>';
+  if(day.u)h+='<div class="ujian">'+esc(day.u)+'. Jangan belajar materi baru.</div>';
+  if(s.total&&s.done===s.total)h+='<div class="done-msg">Semua tugas hari ini selesai. Mantap, Evan!</div>';
+  $('dayHead').innerHTML=h;
+
+  var fh='';['Semua'].concat(SUBJ).forEach(function(f){fh+='<button type="button" class="pill" data-act="filter" data-s="'+f+'" aria-pressed="'+(f===flt)+'">'+f+'</button>';});
+  $('filters').innerHTML=fh;
+
+  var th='',shown=0,clk=clocks(day,ts);
+  ts.forEach(function(t){
+    if(flt!=='Semua'&&t.s!==flt)return;
+    shown++;
+    var ck=!!store.c[t.k],ida='c_'+t.k,isAct=(T.key===t.k&&!T.brk&&(T.mode==='run'||T.mode==='pause')),tl='';
+    var del=t.c?'<button type="button" class="del" data-act="del" data-id="'+t.id+'" aria-label="Hapus tugas">×</button>':'';
+    if(timed(t)){
+      var r=rowT(t);
+      if(ck){
+        tl='<div class="tline"><span class="rt">selesai</span><span class="rp"><i style="width:100%"></i></span>'+((del||qzBtn(t))?'<span class="acts">'+qzBtn(t)+del+'</span>':'')+'</div>';
+      }else{
+        tl='<div class="tline"><span class="rt" data-k="'+t.k+'">'+r.txt+'</span><span class="rp"><i data-k="'+t.k+'" style="width:'+r.pct+'%"></i></span>'+
+          '<span class="acts">'+qzBtn(t)+'<button type="button" class="tgo" data-act="tgo" data-k="'+t.k+'" data-m="'+t.m+'">'+goLabel(t.k)+'</button>'+
+          (spentOf(t.k)>0?'<button type="button" class="rst" data-act="trst" data-k="'+t.k+'" aria-label="Ulang timer tugas ini">Ulang</button>':'')+del+'</span></div>';
+      }
+    }else if(del){tl='<div class="tline"><span class="acts">'+del+'</span></div>';}
+    th+='<div class="task'+(ck?' checked':'')+(isAct?' act':'')+'" style="--c:'+COL[t.s]+'">'+
+      '<input class="bub" type="checkbox" id="'+ida+'" data-k="'+t.k+'"'+(ck?' checked':'')+'>'+
+      '<div class="mid"><label for="'+ida+'" class="tl"><span class="tag">'+t.s+'</span><span class="x">'+esc(t.t)+'</span></label>'+
+      (timed(t)?'<span class="m">'+(clk[t.k]?clk[t.k]+' · ':'')+t.m+' menit</span>':'')+tl+'</div></div>';
+  });
+  if(!shown)th='<p class="empty">Tidak ada tugas '+esc(flt)+' di hari ini.</p>';
+  $('tasks').innerHTML=th;
+  renderPlan(day,ts);
+
+  var bc=$('bagCard');bc.hidden=!(sel>=25);
+  if(!bc.hidden){
+    var bh='',bd=0;
+    BAG.forEach(function(b,i){var k=sel+'-'+i,ck=!!store.g[k];if(ck)bd++;
+      bh+='<div class="task'+(ck?' checked':'')+'" style="--c:var(--ujian)"><input class="bub" type="checkbox" id="g_'+k+'" data-g="'+k+'"'+(ck?' checked':'')+'><label for="g_'+k+'" class="tl"><span class="x">'+esc(b)+'</span></label></div>';});
+    $('bag').innerHTML=bh;$('bagCnt').textContent=bd+'/'+BAG.length;
+  }
+  var ta=$('note');
+  if(lastNoteDay!==sel){ta.value=store.n[sel]||'';lastNoteDay=sel;}
+}
+function renderSheet(){
+  var tot=0,dn=0,mins=0,h='';
+  DAYS.forEach(function(d){
+    var ts=tasks(d),s=stat(d);tot+=s.total;dn+=s.done;mins+=s.doneM;
+    var dots=ts.map(function(t){return'<i class="dot'+(store.c[t.k]?' on':'')+'" style="--c:'+COL[t.s]+'"></i>';}).join('');
+    h+='<button type="button" class="lrow'+(d.d===sel?' sel':'')+'" data-act="day" data-scroll="1" data-d="'+d.d+'" aria-label="'+d.n+' '+d.d+' Oktober, '+s.done+' dari '+s.total+' tugas selesai"><span class="dl">'+d.d+'</span><span class="dots">'+dots+'</span></button>';
+  });
+  $('ljk').innerHTML=h;
+  var p=tot?Math.round(dn/tot*100):0;
+  $('allPct').textContent=p+'%';
+  var st=streak();
+  $('stats').innerHTML='<div><dt>Tugas selesai</dt><dd>'+dn+' <small>dari '+tot+'</small></dd></div>'+
+    '<div><dt>Hari tuntas beruntun</dt><dd>'+st+' <small>hari</small></dd></div>'+
+    '<div><dt>Belajar selesai</dt><dd>'+fmtM(mins)+'</dd></div>';
+  var mh='';
+  SUBJ.forEach(function(sj){
+    var a=0,b=0;
+    DAYS.forEach(function(d){tasks(d).forEach(function(t){if(t.s===sj){b++;if(store.c[t.k])a++;}});});
+    mh+='<div class="meter" style="--c:'+COL[sj]+'"><span class="ml">'+sj+'</span><div class="bar"><i style="width:'+(b?Math.round(a/b*100):0)+'%"></i></div><span class="mn">'+a+'/'+b+'</span></div>';
+  });
+  $('meters').innerHTML=mh;
+  var fk=String(ref||sel);
+  $('tmToday').textContent='Sesi fokus selesai hari ini: '+(store.f[fk]||0)+' menit';
+  renderBook();
+}
+function renderBook(){
+  var h='',n=0;
+  DAYS.forEach(function(d){
+    var t=(store.n[d.d]||'').trim();if(!t)return;n++;
+    h+='<div class="bk"><div class="bkh"><b>'+d.n+', '+d.d+' Okt</b><button type="button" class="lnk" data-act="day" data-scroll="1" data-d="'+d.d+'">Buka</button></div><p>'+esc(t)+'</p></div>';
+  });
+  $('bookList').innerHTML=n?h:'<p class="small">Belum ada catatan. Soal yang salah yang kamu tulis akan terkumpul di sini.</p>';
+  $('copyAll').disabled=!n;
+}
+function renderGoal(){
+  var gh='';
+  UNI.forEach(function(u){
+    var d=store.u[u.id]||{},j=(d.jur||'').trim();
+    gh+='<span class="gl'+(store.u.main===u.id?' main':'')+'">'+u.ab+(j?' · '+esc(j):'')+'</span>';
+  });
+  $('goal').innerHTML=gh;
+}
+function renderCampus(){
+  var uh='';
+  UNI.forEach(function(u){
+    var d=store.u[u.id]||{},isMain=(store.u.main===u.id);
+    uh+='<div class="uni'+(isMain?' main':'')+'"><div class="top"><div class="ab">'+u.ab+'</div>'+
+      '<button type="button" class="pick" data-act="pick" data-u="'+u.id+'" aria-pressed="'+isMain+'">'+(isMain?'Target utama':'Jadikan utama')+'</button></div>'+
+      '<div><div class="nm">'+u.nm+'</div><div class="ct">'+u.ct+'</div></div>'+
+      '<label class="fld"><span>Jurusan incaran</span><input type="text" maxlength="80" id="uj_'+u.id+'" data-uj="'+u.id+'" value="'+esc(d.jur||'')+'" placeholder="Contoh: Teknik Informatika"></label>'+
+      '<label class="chk"><input type="checkbox" data-uc="'+u.id+'"'+(d.cek?' checked':'')+'> Sudah cek syarat di situs resmi</label>'+
+      '<a class="lk" href="'+u.url+'" target="_blank" rel="noopener">Situs resmi '+u.ab+'</a></div>';
+  });
+  $('uni').innerHTML=uh;renderGoal();
+}
+function render(){renderCD();renderExams();renderChips();renderDay();renderSheet();renderQzCard();paintTimer();}
+
+/* timer */
+var T={mode:'idle',total:1500,base:0,t0:0,label:'Fokus bebas',key:null,brk:false,iv:null,msg:''},seq=null,pend=null,wl=null,AC_=null;
+function mmss(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return(m<10?'0':'')+m+':'+(r<10?'0':'')+r;}
+function elapsed(){return T.base+(T.mode==='run'?(Date.now()-T.t0)/1000:0);}
+function remain(){return Math.max(0,Math.round(T.total-elapsed()));}
+function persist(){
+  if(T.mode==='run'||T.mode==='pause'){store.r={key:T.key,total:T.total,base:T.base,t0:T.mode==='run'?T.t0:0,label:T.label,brk:T.brk,seq:seq,pend:pend};}
+  else{delete store.r;}
+  save();
+}
+function prime(){try{var A=window.AudioContext||window.webkitAudioContext;if(!A)return;AC_=AC_||new A();if(AC_.resume)AC_.resume();}catch(e){}}
+function beep(){
+  if(!store.o.snd)return;
+  try{if(!AC_)return;var t=AC_.currentTime;
+    [0,0.3,0.6].forEach(function(o){var s=AC_.createOscillator(),g=AC_.createGain();s.frequency.value=880;
+      g.gain.setValueAtTime(0.0001,t+o);g.gain.exponentialRampToValueAtTime(0.25,t+o+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t+o+0.22);
+      s.connect(g);g.connect(AC_.destination);s.start(t+o);s.stop(t+o+0.25);});
+    if(navigator.vibrate)navigator.vibrate([200,100,200]);}catch(e){}
+}
+function lock(){try{if(navigator.wakeLock&&navigator.wakeLock.request)navigator.wakeLock.request('screen').then(function(s){wl=s;}).catch(function(){});}catch(e){}}
+function unlock(){try{if(wl){wl.release();wl=null;}}catch(e){}}
+function paintAll(){paintTimer();renderDay();}
+function freeIdle(min){T.mode='idle';T.key=null;T.brk=false;T.total=(min||25)*60;T.base=0;T.label='Fokus bebas';T.msg='';}
+function begin(){prime();T.t0=Date.now();T.mode='run';clearInterval(T.iv);T.iv=setInterval(tick,250);lock();persist();paintAll();}
+function startTask(k,m,label,auto){
+  if(!auto)seq=null;
+  if(T.mode==='run')pauseT(true);
+  else if(T.mode==='pause'&&T.key&&!T.brk)store.t[T.key]=T.base;
+  clearInterval(T.iv);
+  T.key=k;T.brk=false;T.msg='';T.total=m*60;T.base=store.t[k]||0;if(T.base>=T.total)T.base=0;T.label=label;pend=null;
+  begin();
+}
+function startSeq(){var nt=nextTask(sel,null);if(!nt)return;seq={day:sel};startTask(nt.k,nt.m,nt.s+': '+nt.t,true);}
+function pauseT(quiet){
+  if(T.mode!=='run')return;
+  T.base=elapsed();T.mode='pause';clearInterval(T.iv);unlock();
+  if(T.key&&!T.brk)store.t[T.key]=T.base;
+  persist();if(!quiet)paintAll();
+}
+function resumeT(){if(T.mode==='pause')begin();}
+function stopT(){
+  if(T.mode==='run')T.base=elapsed();
+  if((T.mode==='run'||T.mode==='pause')&&T.key&&!T.brk)store.t[T.key]=T.base;
+  var keep=(!T.key&&!T.brk)?Math.round(T.total/60):25;
+  clearInterval(T.iv);unlock();seq=null;pend=null;freeIdle(keep);persist();paintAll();
+}
+function tick(){if(remain()<=0)finishT();else paintTimer();}
+function skipBreak(){if(T.brk&&(T.mode==='run'||T.mode==='pause'))finishT();}
+function finishT(){
+  clearInterval(T.iv);unlock();
+  var wasBrk=T.brk,key=T.key,mins=Math.round(T.total/60);
+  T.mode='done';T.base=T.total;T.msg='';
+  if(wasBrk){
+    beep();
+    if(seq&&pend){var p=pend;pend=null;startTask(p.k,p.m,p.label,true);return;}
+    T.msg='Istirahat selesai.';persist();paintAll();return;
+  }
+  var fk=String(ref||sel);store.f[fk]=(store.f[fk]||0)+mins;
+  if(key){delete store.t[key];if(store.o.auto)store.c[key]=1;}
+  beep();
+  if(seq&&key){
+    var cur=findTask(key),nx=nextTask(seq.day,key);
+    if(nx){
+      var lbl=nx.s+': '+nx.t;
+      if(store.o.brk>0&&cur&&SUBJ.indexOf(cur.s)>-1){
+        pend={k:nx.k,m:nx.m,label:lbl};T.key=null;T.brk=true;T.total=store.o.brk*60;T.base=0;
+        T.label='Istirahat '+store.o.brk+' menit. Berikutnya: '+lbl;
+        begin();render();return;
+      }
+      startTask(nx.k,nx.m,lbl,true);render();return;
+    }
+    seq=null;T.msg='Semua tugas berurutan hari ini selesai. Mantap, Evan!';
+  }
+  persist();render();
+}
+function paintTimer(){
+  var run=T.mode==='run',act=run||T.mode==='pause',rem=remain();
+  var lab=T.mode==='done'?(T.msg||'Sesi selesai. Istirahat sebentar.'):T.label;
+  var go=run?'Jeda':(T.mode==='pause'?'Lanjut':(T.mode==='done'?'Ulangi':'Mulai'));
+  $('tmDisp').textContent=mmss(rem);$('tmLab').textContent=lab;$('tmGo').textContent=go;
+  $('dkTime').textContent=mmss(rem);$('dkLab').textContent=lab;$('dkGo').textContent=go;
+  $('dock').hidden=(T.mode==='idle');
+  $('dkStop').textContent=T.mode==='done'?'Tutup':'Hentikan';
+  $('dkSkip').hidden=!(T.brk&&act);
+  $('dkCheck').hidden=!(T.mode==='done'&&T.key&&!T.brk&&!store.c[T.key]);
+  Array.prototype.forEach.call($('presets').querySelectorAll('.pill'),function(b){
+    b.disabled=act;b.setAttribute('aria-pressed',String(!T.key&&!T.brk&&T.total===Number(b.dataset.m)*60));
+  });
+  if(T.key&&!T.brk&&act){
+    var rt=document.querySelector('.rt[data-k="'+T.key+'"]'),ri=document.querySelector('.rp i[data-k="'+T.key+'"]');
+    if(rt)rt.textContent='sisa '+mmss(rem);
+    if(ri)ri.style.width=Math.min(100,Math.round(elapsed()/T.total*100))+'%';
+  }
+}
+
+/* clipboard */
+function flash(btn,txt){var o=btn.textContent;btn.textContent=txt;setTimeout(function(){btn.textContent=o;},1600);}
+function copyText(txt,btn){
+  var ok=function(){flash(btn,'Tersalin');};
+  var fb=function(){try{var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();var r=document.execCommand('copy');document.body.removeChild(ta);if(r)ok();else flash(btn,'Gagal menyalin');}catch(e){flash(btn,'Gagal menyalin');}};
+  try{navigator.clipboard.writeText(txt).then(ok,fb);}catch(e){fb();}
+}
+
+/* events */
+var mi=0;
+function nextMotto(){mi=(mi+1)%MOT.length;var m=$('motto');m.textContent=MOT[mi];m.classList.remove('in');void m.offsetWidth;m.classList.add('in');}
+setInterval(nextMotto,9000);
+var armed=false,armT=null;
+function pickDay(d,scroll){
+  sel=d;lastNoteDay=null;render();
+  if(scroll){var el=$('chips');try{el.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'});}catch(e){}}
+}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-act]');if(!b||b.disabled)return;
+  var a=b.dataset.act;
+  if(a==='day'){pickDay(Number(b.dataset.d),!!b.dataset.scroll);}
+  else if(a==='filter'){flt=b.dataset.s;renderDay();}
+  else if(a==='motto'){nextMotto();}
+  else if(a==='tgo'){
+    var k=b.dataset.k;
+    if(T.key===k&&T.mode==='run')pauseT();
+    else if(T.key===k&&T.mode==='pause')resumeT();
+    else{var t=findTask(k);startTask(k,Number(b.dataset.m),t?t.s+': '+t.t:'Fokus');}
+  }
+  else if(a==='trst'){
+    var k2=b.dataset.k;
+    if(T.key===k2&&(T.mode==='run'||T.mode==='pause')){clearInterval(T.iv);unlock();seq=null;pend=null;freeIdle(25);persist();}
+    delete store.t[k2];save();paintAll();
+  }
+  else if(a==='pick'){store.u.main=(store.u.main===b.dataset.u)?'':b.dataset.u;save();renderCampus();}
+  else if(a==='seq'){startSeq();}
+  else if(a==='skipbrk'){skipBreak();}
+  else if(a==='del'){var id=b.dataset.id,arr=store.x[sel]||[];store.x[sel]=arr.filter(function(u){return u.id!==id;});delete store.c['x'+id];delete store.t['x'+id];save();render();}
+  else if(a==='preset'){if(T.mode==='run'||T.mode==='pause')return;freeIdle(Number(b.dataset.m));paintTimer();}
+  else if(a==='tmgo'){
+    if(T.mode==='run')pauseT();
+    else if(T.mode==='pause')resumeT();
+    else{if(T.mode==='done')freeIdle(Math.round(T.total/60));begin();}
+  }
+  else if(a==='tmreset'){stopT();}
+  else if(a==='dkcheck'){if(T.key){store.c[T.key]=1;save();render();}}
+  else if(a==='sum'){
+    var day=getDay(sel),ts=tasks(day),s=stat(day);
+    var out='Ringkasan belajar Evan Haris Pramana\nTarget: UGM, ITB, ITS\n'+day.n+', '+day.d+' Okt ('+day.tag+')\nSelesai: '+s.done+' dari '+s.total+' tugas\n\n';
+    ts.forEach(function(x){out+=(store.c[x.k]?'[x] ':'[ ] ')+x.s+': '+x.t+(x.m?' ('+x.m+' menit)':'')+'\n';});
+    out+='\nWaktu fokus tercatat: '+(store.f[String(sel)]||0)+' menit';
+    var nn=(store.n[sel]||'').trim();if(nn)out+='\n\nCatatan kesalahan:\n'+nn;
+    copyText(out,b);
+  }
+  else if(a==='copy'){
+    var o2='Buku kesalahan TKA: Evan Haris Pramana\n';
+    DAYS.forEach(function(d){var t=(store.n[d.d]||'').trim();if(t)o2+='\n'+d.n+', '+d.d+' Okt\n'+t+'\n';});
+    copyText(o2,b);
+  }
+  else if(a==='reset'){
+    if(!armed){armed=true;b.textContent='Yakin? Klik sekali lagi';clearTimeout(armT);armT=setTimeout(function(){armed=false;b.textContent='Hapus semua centang';},4000);}
+    else{armed=false;clearTimeout(armT);b.textContent='Hapus semua centang';store.c={};store.g={};store.t={};save();render();}
+  }
+});
+document.addEventListener('change',function(e){
+  var t=e.target;if(!t||!t.matches)return;
+  if(t.matches('input[data-k]')){
+    var k=t.dataset.k;if(t.checked)store.c[k]=1;else delete store.c[k];save();render();
+    var el=document.querySelector('input[data-k="'+k+'"]');if(el)el.focus();
+  }else if(t.matches('input[data-g]')){
+    var g=t.dataset.g;if(t.checked)store.g[g]=1;else delete store.g[g];save();renderDay();
+    var el2=document.querySelector('input[data-g="'+g+'"]');if(el2)el2.focus();
+  }else if(t.matches('input[data-uc]')){
+    var uid=t.dataset.uc;if(!store.u[uid]||typeof store.u[uid]!=='object')store.u[uid]={};store.u[uid].cek=t.checked?1:0;save();
+  }else if(t.id==='stime'){
+    if(t.value){store.s[sel]=t.value;save();renderDay();}
+  }else if(t.id==='sbrk'){
+    store.o.brk=Number(t.value)||0;save();renderDay();
+  }else if(t.id==='sauto'){
+    store.o.auto=t.checked?1:0;save();
+  }else if(t.id==='ssnd'){
+    store.o.snd=t.checked?1:0;save();
+  }
+});
+document.addEventListener('input',function(e){
+  var t=e.target;
+  if(t&&t.matches&&t.matches('input[data-uj]')){
+    var uid=t.dataset.uj;if(!store.u[uid]||typeof store.u[uid]!=='object')store.u[uid]={};store.u[uid].jur=t.value;save();renderGoal();
+  }
+});
+$('note').addEventListener('input',function(){
+  var v=this.value;if(v.trim())store.n[sel]=v;else delete store.n[sel];save();renderBook();
+});
+$('xf').addEventListener('submit',function(e){
+  e.preventDefault();
+  var t=$('xt').value.trim();
+  if(!t){$('xerr').textContent='Tulis nama tugasnya dulu.';$('xt').focus();return;}
+  $('xerr').textContent='';
+  var m=Math.max(0,Math.min(300,parseInt($('xm').value,10)||0));
+  var u={id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),s:$('xs').value,t:t,m:m};
+  if(!Array.isArray(store.x[sel]))store.x[sel]=[];
+  store.x[sel].push(u);save();$('xt').value='';render();$('xt').focus();
+});
+
+/* ===== TRY-OUT DI WEB ===== */
+var QZ=[{"id":"bindo","title":"Try-Out Bindo","minutes":75,"col":"var(--bindo)","task":"TRY-OUT BINDO","total":30,"map":[["Pemahaman tekstual (kerangka, kata serapan, latar, karakter)",[2,7,15,17,18,25]],["Pemahaman inferensial (ide pokok, gagasan pendukung, hubungan antarparagraf, konflik, alur, nilai, prediksi, majas)",[1,3,8,12,16,19,20,21,22,28,29]],["Evaluasi isi (relevansi, keakuratan, kecukupan, kesesuaian)",[5,6,9,10,13,14]],["Ketepatan bahasa (ejaan, kata baku, kalimat efektif, ragam bahasa)",[4,11,26]],["Ketepatan bagian teks, respons emosional, apresiasi",[23,24,27,30]]],"groups":[{"t":"Teks A (informasi tunggal)","p":["**Literasi Digital di Tengah Banjir Informasi**","Setiap hari, kita menerima ratusan informasi dari media sosial, aplikasi pesan, dan situs berita. Sebagian informasi itu benar, tetapi sebagian lain berupa hoaks yang sengaja dibuat untuk menyesatkan. Karena itu, kemampuan memilah informasi atau literasi digital menjadi keterampilan penting bagi siapa saja.","Literasi digital tidak hanya berarti mahir mengoperasikan gawai. Seseorang yang literat mampu menemukan informasi, memahami maksudnya, menilai kredibilitas sumbernya, dan menggunakannya secara bertanggung jawab. Misalnya, sebelum membagikan kabar yang mengejutkan, ia memeriksa siapa penulisnya, kapan kabar itu terbit, dan apakah media lain memberitakan hal yang sama.","Hoaks mudah tersebar karena memancing emosi. Judul yang provokatif membuat orang terburu-buru menekan tombol bagikan sebelum membaca isinya. Algoritma media sosial juga cenderung menampilkan konten yang banyak disukai sehingga kabar palsu yang ramai dibicarakan dapat muncul berulang kali di layar kita.","Untuk melindungi diri, ada beberapa langkah sederhana yang dapat dilakukan. Pertama, bacalah isi berita secara utuh, bukan hanya judulnya. Kedua, bandingkan dengan sumber resmi atau media tepercaya. Ketiga, periksa foto atau video melalui pencarian gambar. Keempat, tahan diri untuk tidak mengunggah ulang informasi yang belum terverifikasi.","Sebuah survei terhadap 500 pelajar di satu kota menemukan bahwa 62 persen responden pernah membagikan kabar tanpa memeriksanya terlebih dahulu. Temuan itu menunjukkan bahwa pendidikan literasi digital perlu diberikan sejak dini, baik di sekolah maupun di rumah."],"poem":false},{"t":"Teks B (informasi: metakognisi)","p":["**Belajar tentang Cara Belajar**","Banyak siswa belajar dengan cara membaca berulang-ulang, tetapi tidak tahu apakah cara itu benar-benar efektif. Padahal, ada kemampuan penting yang disebut metakognisi, yaitu kesadaran seseorang terhadap cara ia berpikir dan belajar.","Metakognisi bekerja dalam tiga tahap. Tahap pertama adalah perencanaan: siswa menentukan tujuan belajar, memilih strategi, dan memperkirakan waktu. Tahap kedua adalah pemantauan: selama belajar, siswa bertanya pada diri sendiri apakah ia memahami bacaan dan berhenti sejenak jika bingung. Tahap ketiga adalah evaluasi: setelah belajar, siswa memeriksa hasilnya dan mencatat bagian yang masih salah.","Sebagai contoh, seorang siswa yang akan menghadapi ujian membuat jadwal untuk tiap mata pelajaran, mengerjakan soal latihan, lalu mencatat kesalahannya di buku khusus. Esok harinya, ia membaca ulang catatan itu sebelum mengerjakan soal baru. Cara tersebut membuatnya tahu bagian mana yang perlu diulang.","Penelitian di bidang pendidikan menunjukkan bahwa siswa yang rutin menerapkan metakognisi cenderung lebih mudah menyesuaikan strategi belajarnya ketika menghadapi materi yang sulit. Meskipun demikian, keterampilan ini tidak muncul seketika. Ia perlu dilatih secara bertahap dan konsisten.","Guru dan orang tua dapat membantu dengan mengajukan pertanyaan reflektif, misalnya, “Bagian mana yang paling sulit hari ini?” atau “Apa yang akan kamu ubah besok?” Pertanyaan semacam itu mendorong siswa memikirkan proses belajarnya sendiri."],"poem":false},{"t":"Teks C dan Teks D (informasi jamak)","p":["**Teks C.** Belanja daring membuka peluang besar bagi pelaku usaha mikro. Dengan memanfaatkan pasar daring, pedagang di desa dapat menjual produknya ke kota lain tanpa menyewa kios. Biaya promosi pun relatif murah karena cukup mengunggah foto dan deskripsi produk. Sebuah koperasi pengrajin anyaman di Jawa Tengah mencatat bahwa omzetnya naik dua kali lipat setelah satu tahun berjualan daring. Selain itu, pembeli memperoleh lebih banyak pilihan dengan harga yang mudah dibandingkan.","**Teks D.** Namun, belanja daring juga menimbulkan kekhawatiran. Banyak pedagang pasar tradisional mengeluh bahwa pelanggannya berkurang karena konsumen beralih membeli dari gawai. Pelaku usaha kecil yang belum terbiasa dengan teknologi sering kesulitan bersaing dengan penjual besar yang mampu memberi diskon dan ongkos kirim gratis. Selain itu, tidak semua daerah memiliki jaringan internet yang stabil sehingga peluang tidak merata. Karena itu, pendampingan dan pelatihan bagi pedagang kecil dinilai sangat diperlukan."],"poem":false},{"t":"Teks E (cerpen)","p":["**Bengkel Pak Harun**","Pagi itu, Raka berdiri di depan bengkel sepeda motor milik ayahnya. Tulisan “Bengkel Harun Jaya” pada papan seng telah memudar, dan bau oli yang pekat menyambutnya seperti biasa. Di tangannya tergenggam amplop cokelat berisi hasil seleksi masuk jurusan Teknik Mesin di sebuah universitas negeri.","Tiga tahun lalu, ia hampir tidak pernah mau menginjakkan kaki di bengkel itu. Ia malu saat teman-temannya melihat tangannya yang hitam oleh gemuk. “Ayahmu cuma tukang bengkel,” kata seorang teman, dan kalimat itu terus mengganggunya. Raka lalu memilih belajar di perpustakaan sepulang sekolah, diam-diam bermimpi menjadi insinyur.","Kini ia pulang membawa kabar yang seharusnya membahagiakan. Namun, langkahnya berat. Ia tahu biaya kuliah tidak murah, sementara bengkel ayahnya sepi sejak jalan di depannya dialihkan. Ia juga ingat bahwa Dimas, adiknya, sebentar lagi masuk SMP.","“Sudah pulang?” Pak Harun muncul dari balik motor yang sedang dibongkar. Wajahnya bercoreng oli, tetapi matanya hangat. “Kenapa berdiri di situ?”","Raka menyodorkan amplop itu tanpa berkata apa-apa. Ayahnya membersihkan tangan dengan lap, membuka amplop dengan hati-hati, dan membaca isinya pelan-pelan. Bahunya bergetar. Ia berbalik, pura-pura sibuk dengan kunci pas.","“Ayah tahu kamu pasti bisa,” katanya akhirnya, dengan suara serak. “Soal biaya, nanti kita pikirkan.” Raka ingin menjawab bahwa ia bisa bekerja sambil kuliah, tetapi kata-kata itu tertahan di tenggorokannya. Ia memandang tangan ayahnya yang hitam dan kasar, tangan yang selama ini membiayai mimpinya, lalu menyadari betapa lama ia menutup mata terhadap hal itu."],"poem":false},{"t":"Teks F (naskah drama)","p":["**Ruang Tunggu**","Latar: ruang tunggu terminal bus pada sore hari. Bu Sari duduk gelisah memegang tas kain. Dito masuk membawa ransel, lalu duduk di sebelahnya.","**Dito:** (menoleh ramah) Menunggu bus ke Malang, Bu?","**Bu Sari:** (mengangguk, cemas) Iya, Nak. Tapi sudah dua jam bus belum datang. Cucu Ibu pasti menunggu di sana sejak tadi.","**Dito:** (melihat ponsel) Kata petugas, bus terlambat karena jalan tertutup longsor kecil. Mungkin satu jam lagi.","**Bu Sari:** (menghela napas) Ibu tidak punya ponsel untuk mengabari cucu.","**Dito:** (tersenyum, mengeluarkan ponsel) Pakai punya saya saja, Bu. Ini nomor cucu Ibu?","**Bu Sari:** (matanya berkaca-kaca) Terima kasih, Nak. Kamu baik sekali.","**Dito:** (menyodorkan ponsel) Tidak apa-apa, Bu. Siapa tahu kelak ada orang yang menolong saya juga."],"poem":false},{"t":"Teks G (puisi)","p":["**Ibu di Ujung Fajar**","Sebelum ayam jantan menyelesaikan kokoknya,","tanganmu telah menyalakan api dapur.","Uap nasi naik seperti doa-doa yang pelan,","menyentuh langit-langit rumah kita yang rendah.","Kau tak pernah bercerita tentang lelah,","hanya menaruh bekal di tasku dengan hati-hati,","seakan setiap butir nasinya adalah restu","yang kau titipkan untuk jalan panjangku."],"poem":true}],"qs":[{"n":1,"g":0,"tag":"Ide pokok","type":"pg","stem":"Gagasan utama teks tersebut adalah ...","opts":["Media sosial adalah sumber informasi yang paling dapat dipercaya.","Hoaks hanya menyebar di kalangan pelajar di satu kota.","Gawai sebaiknya tidak digunakan agar terhindar dari hoaks.","Algoritma media sosial harus dihapus agar kabar palsu hilang.","Literasi digital, yaitu kemampuan memilah dan menggunakan informasi secara bertanggung jawab, penting untuk menghadapi hoaks."],"key":"E","exp":"Teks membahas pengertian literasi digital, penyebab hoaks menyebar, langkah menghadapinya, dan bukti survei. Pilihan lain terlalu sempit atau bertentangan dengan teks."},{"n":2,"g":0,"tag":"Kata serapan","type":"kat","stem":"Tentukan benar atau salah untuk pernyataan tentang kata dalam teks.","sts":["Hoaks merupakan kata serapan dari bahasa asing","Algoritma merupakan kata serapan","Gawai adalah padanan dalam bahasa Indonesia untuk gadget","Kredibilitas merupakan kata asli bahasa Nusantara, bukan serapan"],"key":["B","B","B","S"],"exp":"Hoaks (dari hoax), algoritma, dan kredibilitas adalah serapan. Gawai adalah padanan gadget dalam bahasa Indonesia."},{"n":3,"g":0,"tag":"Hubungan antarparagraf","type":"pg","stem":"Hubungan makna paragraf ketiga dengan paragraf kedua adalah ...","opts":["paragraf ketiga hanya mengulang kalimat pertama paragraf kedua","paragraf ketiga menjelaskan penyebab hoaks mudah tersebar setelah paragraf kedua menjelaskan arti literasi digital","paragraf ketiga menjelaskan urutan waktu kejadian pada paragraf kedua","paragraf ketiga memberi contoh langkah yang disebut pada paragraf kedua","paragraf ketiga bertentangan dengan seluruh isi paragraf kedua"],"key":"B","exp":"Paragraf kedua menjelaskan konsep. Paragraf ketiga menjelaskan mengapa hoaks mudah menyebar (alasan atau sebab)."},{"n":4,"g":0,"tag":"Ketepatan bahasa","type":"pg","stem":"Kalimat berikut mengandung kesalahan ejaan dan kata baku: “Ia memverifikasi kabar itu sebelum men-share ke grup, karena takut menyebarkan hoax.” Perbaikan yang tepat adalah ...","opts":["Ia memverifikasi kabar itu sebelum membagikannya ke grup, karena takut menyebarkan hoax.","Ia memverifikasi, kabar itu sebelum membagikannya ke grup karena takut menyebarkan hoaks.","Ia memverifikasi kabar itu sebelum membagikannya ke grup karena takut menyebarkan hoax.","Ia memverifikasi kabar itu sebelum membagikannya ke grup karena takut menyebarkan hoaks.","Ia memverifikasi kabar itu sebelum men-share ke grup karena takut menyebarkan hoaks."],"key":"D","exp":"Gunakan padanan Indonesia (membagikannya), tulis hoaks (bukan hoax), dan jangan pakai koma sebelum anak kalimat yang berada di belakang induk kalimat."},{"n":5,"g":0,"tag":"Keakuratan","type":"mcma","stem":"Pilih SEMUA pernyataan yang sesuai dengan isi teks.","opts":["Literasi digital hanya berarti mahir mengoperasikan gawai","Hoaks mudah tersebar karena memancing emosi","Algoritma media sosial dapat menampilkan kabar palsu berulang kali","Survei menunjukkan bahwa semua pelajar pernah membagikan kabar tanpa memeriksa","Pencarian gambar dapat membantu memeriksa foto atau video"],"key":["B","C","E"],"exp":"A salah (teks menyebut literasi digital lebih dari mahir memakai gawai). D salah: survei menyebut 62 persen, bukan semua."},{"n":6,"g":0,"tag":"Kecukupan informasi","type":"pg","stem":"Penilaian yang tepat terhadap bukti survei pada paragraf kelima adalah ...","opts":["Bukti membuktikan bahwa semua hoaks berasal dari pelajar.","Bukti sangat kuat karena berlaku untuk seluruh pelajar di Indonesia.","Bukti cukup untuk menunjukkan masalah di satu kota, tetapi belum dapat digeneralisasi ke seluruh pelajar.","Bukti tidak relevan karena tidak berkaitan dengan literasi digital.","Bukti tidak dapat dinilai karena tidak memuat angka."],"key":"C","exp":"Survei melibatkan 500 pelajar di satu kota, sehingga hasilnya belum dapat digeneralisasi ke seluruh pelajar."},{"n":7,"g":1,"tag":"Kerangka teks","type":"pg","stem":"Kerangka yang tepat berdasarkan bagian-bagian penting teks adalah ...","opts":["Pengertian metakognisi – jadwal ujian – peran media sosial – tiga tahap – manfaat","Cara belajar tradisional – kelemahan guru – kelebihan buku khusus – tiga tahap – contoh","Manfaat metakognisi – peran guru – pengertian – contoh – tiga tahap","Tiga tahap metakognisi – cara membaca berulang-ulang – peran guru – pengertian – contoh","Pengertian metakognisi – tiga tahap metakognisi – contoh penerapan – manfaat dan pelatihannya – peran guru dan orang tua"],"key":"E","exp":"Teks berurutan: pengertian, tiga tahap, contoh, manfaat dan pelatihan, peran guru dan orang tua."},{"n":8,"g":1,"tag":"Gagasan pendukung","type":"pg","stem":"Gagasan pendukung untuk kalimat “Metakognisi bekerja dalam tiga tahap” adalah ...","opts":["guru memberikan pertanyaan reflektif setiap hari","penelitian di bidang pendidikan dilakukan secara bertahap","siswa membaca berulang-ulang agar cepat hafal","perencanaan menentukan tujuan dan strategi, pemantauan memeriksa pemahaman selama belajar, dan evaluasi memeriksa hasil belajar","siswa membuat jadwal ujian selama satu bulan penuh"],"key":"D","exp":"Tiga tahap diuraikan pada paragraf ketiga: perencanaan, pemantauan, dan evaluasi."},{"n":9,"g":1,"tag":"Relevansi","type":"pg","stem":"Penerapan isi teks yang paling sesuai dalam kehidupan sehari-hari adalah ...","opts":["Siswa mengubah strategi belajar hanya pada malam sebelum ujian.","Siswa membaca buku berulang-ulang tanpa mengecek pemahamannya.","Siswa menghindari soal sulit agar tidak merasa bingung.","Siswa mencatat soal yang salah setelah latihan, lalu membacanya ulang sebelum mengerjakan soal baru.","Siswa belajar tanpa tujuan agar tidak merasa tertekan."],"key":"D","exp":"Mencatat kesalahan dan mengulangnya menerapkan tahap evaluasi dan perencanaan yang dijelaskan dalam teks."},{"n":10,"g":1,"tag":"Keakuratan","type":"kat","stem":"Tentukan benar atau salah berdasarkan teks.","sts":["Metakognisi adalah kesadaran seseorang terhadap cara ia berpikir dan belajar","Tahap pemantauan dilakukan setelah ujian selesai","Keterampilan metakognisi muncul seketika tanpa latihan","Pertanyaan reflektif dapat membantu siswa memikirkan proses belajarnya"],"key":["B","S","S","B"],"exp":"Pemantauan dilakukan selama belajar. Metakognisi perlu dilatih bertahap."},{"n":11,"g":1,"tag":"Kalimat efektif","type":"pg","stem":"Kalimat yang efektif adalah ...","opts":["Guru membantu siswa untuk bisa membantu dengan cara mengajukan pertanyaan reflektif.","Guru membantu para siswa-siswa dengan cara mengajukan pertanyaan-pertanyaan reflektif.","Guru membantu siswa dengan mengajukan pertanyaan reflektif.","Siswa dibantu oleh guru, guru itu mengajukan pertanyaan reflektif kepada siswa.","Para guru-guru membantu siswa dengan mengajukan pertanyaan reflektif."],"key":"C","exp":"Hindari pleonasme (para siswa-siswa, pertanyaan-pertanyaan jamak berlebihan) dan pengulangan."},{"n":12,"g":2,"tag":"Sintesis","type":"pg","stem":"Simpulan yang tepat dari kedua teks adalah ...","opts":["Pendampingan pedagang kecil tidak diperlukan karena internet sudah merata.","Pedagang pasar tradisional tidak perlu belajar teknologi.","Belanja daring membuka peluang bagi usaha kecil, tetapi manfaatnya tidak merata sehingga pendampingan diperlukan.","Belanja daring hanya cocok untuk penjual besar.","Belanja daring pasti merugikan semua pedagang kecil."],"key":"C","exp":"Teks C menyajikan peluang, Teks D menyajikan kekhawatiran dan kebutuhan pendampingan."},{"n":13,"g":2,"tag":"Perbandingan","type":"kat","stem":"Tentukan benar atau salah berdasarkan Teks C dan Teks D.","sts":["Teks C menyebut peningkatan omzet koperasi pengrajin","Teks D menyebut jaringan internet yang tidak merata","Teks C menyatakan bahwa pedagang pasar tradisional kehilangan pelanggan","Teks D menyatakan bahwa belanja daring tidak memiliki manfaat sama sekali"],"key":["B","B","S","S"],"exp":"Kehilangan pelanggan pedagang tradisional disebut di Teks D, bukan Teks C. Teks D tidak menyatakan belanja daring tidak bermanfaat sama sekali."},{"n":14,"g":2,"tag":"Kecukupan informasi","type":"pg","stem":"Pernyataan “omzet naik dua kali lipat” pada Teks C kurang kuat untuk digeneralisasi karena ...","opts":["hanya berasal dari satu koperasi di satu daerah","disampaikan dalam bentuk angka","tidak menyebut kata omzet","tidak berkaitan dengan belanja daring","bertentangan dengan Teks D"],"key":"A","exp":"Contoh tunggal dari satu koperasi belum cukup mewakili seluruh pelaku usaha kecil."},{"n":15,"g":2,"tag":"Padanan istilah","type":"pg","stem":"Padanan istilah asing online yang dipakai dalam kedua teks adalah ...","opts":["luring","tautan","daring","nirkabel","gawai"],"key":"C","exp":"Online = daring. Luring = offline, nirkabel = wireless, gawai = gadget, tautan = link."},{"n":16,"g":2,"tag":"Hubungan antarteks","type":"pg","stem":"Kata Namun pada awal Teks D menunjukkan hubungan ...","opts":["pertentangan dengan isi Teks C","sebab-akibat dari isi Teks C","simpulan dari seluruh isi Teks C","urutan waktu setelah isi Teks C","perincian dari isi Teks C"],"key":"A","exp":"Namun menandakan pertentangan: dari peluang (Teks C) ke kekhawatiran (Teks D)."},{"n":17,"g":3,"tag":"Latar","type":"pg","stem":"Latar tempat dan suasana pada awal cerita adalah ...","opts":["perpustakaan, dengan suasana sunyi dan tenang","sekolah, dengan suasana riuh dan gembira","rumah, dengan suasana marah dan penuh pertengkaran","universitas, dengan suasana tegang karena ujian","bengkel sepeda motor, dengan suasana haru dan penuh pertimbangan"],"key":"E","exp":"Cerita dibuka di depan bengkel, dengan bau oli dan perasaan Raka yang campur aduk."},{"n":18,"g":3,"tag":"Karakter","type":"pg","stem":"Karakter Pak Harun yang tergambar dalam cerita adalah ...","opts":["penyayang, bertanggung jawab, dan tidak ingin membebani anaknya","sombong karena pekerjaannya","putus asa dan menyalahkan keadaan","pemarah dan suka memaksakan kehendak","acuh tak acuh terhadap masa depan anaknya"],"key":"A","exp":"Ia membaca surat dengan haru, berkata “nanti kita pikirkan” soal biaya, dan menyembunyikan emosi: penyayang dan bertanggung jawab."},{"n":19,"g":3,"tag":"Konflik","type":"kat","stem":"Tentukan benar atau salah berdasarkan cerpen.","sts":["Raka mengalami konflik batin antara rasa bahagia dan kekhawatiran biaya kuliah","Ada konflik masa lalu Raka berupa rasa malu terhadap pekerjaan ayahnya","Konflik utama cerita adalah perkelahian fisik antara Raka dan temannya","Cerita ini hanya memiliki satu konflik tunggal"],"key":["B","B","S","S"],"exp":"Cerita memuat konflik batin (bahagia dan khawatir), rasa malu masa lalu, dan masalah biaya, sehingga konfliknya jamak."},{"n":20,"g":3,"tag":"Alur","type":"pg","stem":"Alur cerpen tersebut adalah ...","opts":["alur mundur seluruhnya","alur campuran karena terdapat kilas balik pada paragraf kedua","alur maju seluruhnya","alur campuran karena terdapat ramalan masa depan","alur tidak beraturan tanpa urutan waktu"],"key":"B","exp":"Cerita berjalan di masa kini, lalu kilas balik tiga tahun lalu (paragraf kedua), lalu kembali ke masa kini."},{"n":21,"g":3,"tag":"Nilai","type":"pg","stem":"Nilai yang paling tepat dalam cerpen tersebut adalah ...","opts":["menghargai pengorbanan orang tua dan tidak malu terhadap pekerjaan yang halal","pekerjaan bengkel lebih rendah daripada pekerjaan insinyur","uang adalah satu-satunya hal yang menentukan masa depan","kesuksesan hanya diukur dari diterima di universitas negeri","mengejar cita-cita harus mengabaikan keluarga"],"key":"A","exp":"Raka menyadari pengorbanan ayahnya dan menyesal pernah malu."},{"n":22,"g":3,"tag":"Prediksi","type":"pg","stem":"Kelanjutan cerita yang paling mungkin adalah ...","opts":["Raka menghargai ayahnya dan bersama-sama mencari cara agar biaya kuliahnya dapat terpenuhi.","Dimas yang akan menggantikan Raka berkuliah.","Raka menolak kuliah dan menyalahkan ayahnya.","Raka meninggalkan bengkel dan tidak pernah pulang.","Pak Harun melarang Raka melanjutkan kuliah."],"key":"A","exp":"Sikap Raka berubah menjadi menghargai, dan ayah berkata “nanti kita pikirkan”. Kelanjutan logisnya mencari jalan keluar bersama."},{"n":23,"g":3,"tag":"Ketepatan bagian teks","type":"mcma","stem":"Pilih SEMUA bagian cerita yang menggambarkan perubahan sikap Raka terhadap ayahnya.","opts":["“Ia malu saat teman-temannya melihat tangannya yang hitam oleh gemuk.”","“Ia memandang tangan ayahnya yang hitam dan kasar, tangan yang selama ini membiayai mimpinya”","“lalu menyadari betapa lama ia menutup mata terhadap hal itu”","“Tulisan ‘Bengkel Harun Jaya’ pada papan seng telah memudar”","“Raka menyodorkan amplop itu tanpa berkata apa-apa.”"],"key":["B","C"],"exp":"B dan C menunjukkan kesadaran dan penghargaan baru. A adalah sikap lama (malu). D dan E bukan perubahan sikap."},{"n":24,"g":3,"tag":"Respons emosional","type":"pg","stem":"Respons emosional yang paling tepat setelah membaca cerpen tersebut adalah ...","opts":["haru dan simpati terhadap pengorbanan ayah serta penyesalan Raka","geli karena kejadian lucu yang dialami tokoh","bangga karena Raka menolak kuliah","marah kepada Raka tanpa alasan","bosan karena cerita tidak memiliki konflik"],"key":"A","exp":"Cerita menggambarkan pengorbanan ayah dan penyadaran Raka yang menimbulkan rasa haru."},{"n":25,"g":4,"tag":"Karakter","type":"pg","stem":"Karakter Dito yang tergambar dalam kutipan drama adalah ...","opts":["pemalu dan tertutup","pemarah dan tidak sabar","acuh tak acuh","peduli dan ramah","sombong"],"key":"D","exp":"Dito menyapa ramah, menjelaskan keterlambatan bus, dan meminjamkan ponselnya."},{"n":26,"g":4,"tag":"Ketepatan bahasa","type":"pg","stem":"Ragam bahasa pada dialog tersebut tepat karena ...","opts":["memakai istilah asing di setiap kalimat","memakai bahasa santai tetapi sopan yang sesuai dengan percakapan antara siswa dan ibu yang lebih tua","memakai bahasa kasar agar terasa akrab","memakai bahasa ilmiah yang kaku sehingga sulit dipahami","memakai kalimat panjang yang bertele-tele"],"key":"B","exp":"Sapaan “Bu” dan “Nak” serta kalimat pendek menunjukkan ragam santai yang sopan."},{"n":27,"g":4,"tag":"Respons emosional","type":"pg","stem":"Respons emosional yang paling tepat setelah membaca kutipan drama tersebut adalah ...","opts":["jengkel karena Dito mengganggu Bu Sari","hangat dan terharu karena kebaikan hati Dito","takut karena terjadi bencana besar","cemburu kepada Bu Sari","bosan karena dialognya tidak bermakna"],"key":"B","exp":"Tindakan Dito yang tulus dan reaksi Bu Sari yang berkaca-kaca menimbulkan rasa hangat dan haru."},{"n":28,"g":5,"tag":"Majas","type":"pg","stem":"Majas yang terdapat pada larik “Uap nasi naik seperti doa-doa yang pelan” adalah ...","opts":["hiperbola","ironi","sinekdoke","perumpamaan (simile)","litotes"],"key":"D","exp":"Kata “seperti” menunjukkan perbandingan langsung, yaitu perumpamaan."},{"n":29,"g":5,"tag":"Makna puisi","type":"pg","stem":"Makna “restu yang kau titipkan untuk jalan panjangku” pada bait kedua adalah ...","opts":["keluhan ibu tentang pekerjaan rumah","nasihat panjang tentang cara memasak","perintah agar anak segera pulang","uang saku yang diberikan ibu setiap pagi","doa dan harapan baik ibu bagi perjalanan hidup anaknya"],"key":"E","exp":"“Restu” berarti doa dan harapan baik. Bekal dilambangkan sebagai bentuk doa ibu bagi masa depan anak."},{"n":30,"g":5,"tag":"Respons emosional","type":"pg","stem":"Perasaan yang paling tepat setelah membaca puisi tersebut adalah ...","opts":["gembira karena bercanda","bosan karena tidak ada makna","marah kepada ibu","takut kehilangan bekal","haru dan penuh rasa terima kasih kepada ibu"],"key":"E","exp":"Puisi menggambarkan kasih ibu yang bekerja tanpa mengeluh dan menyiapkan bekal dengan doa."}]},{"id":"bing","title":"Try-Out Bing","minutes":60,"col":"var(--bing)","task":"TRY-OUT BING","total":30,"map":[["Content II-IV (informasi eksplisit, kerangka, restating)",[1,2,3,4,7,8,9]],["Content V-VI (sintesis, fakta tambahan)",[6,11,12,25]],["Content VII, IX, X (pesan moral, perbandingan, sebab-akibat)",[5,10,13,16,18]],["Content VIII, XII (prediksi)",[23,19,30]],["Content XI, XVI, XVII (karakter, bagian teks, perasaan)",[14,15,17,22,24]],["Content XIII (realitas atau fantasi)",[20,21]],["Content XIV, XV (fakta/opini, kecukupan dan validitas)",[26,27,28,29]]],"groups":[{"t":"Text 1: Procedure Text","p":["**How to Plant Chili Seeds in a Pot**","Chili plants grow well in pots, even in small yards or on balconies. Fresh chilies from your own pot can save money and taste better. Here is how to plant them from seeds.","**Materials:** a plastic pot at least 30 centimetres wide with drainage holes, potting soil mixed with compost, chili seeds, a small cup of warm water, a spray bottle, and a sunny place.","**Steps:**","1. Soak the seeds in warm water for about six hours. This softens the seed coat so the seeds sprout faster.","2. Fill the pot with soil, leaving two centimetres of space at the top so that water will not overflow.","3. Make small holes about one centimetre deep and place two seeds in each hole. Cover them lightly with soil.","4. Spray the soil until it is damp. Do not pour too much water because the seeds may rot in soggy soil.","5. Put the pot in a place that gets at least six hours of sunlight a day. Keep the soil damp until seedlings appear, usually within seven to fourteen days.","6. When the seedlings are about five centimetres tall, keep only the strongest one in each hole. Gently remove the weaker ones so the remaining plant has enough space and nutrients.","7. Water the plant every morning and add a spoonful of compost once a month.","**Tips:** Yellow leaves often mean the plant receives too much water, while dry, curling leaves mean it needs more."],"poem":false},{"t":"Text 2: Descriptive Text","p":["**Mount Bromo at Dawn and at Noon**","Mount Bromo is an active volcano in East Java and is part of the Bromo Tengger Semeru National Park. It rises from a huge sandy plain inside an old caldera, so the area looks like a sea of grey sand surrounding a smoking cone. Thousands of visitors come every year to see this unusual landscape.","At dawn, the scene is cold and quiet. Most visitors wake up before four o’clock and drive or walk to a viewpoint on the edge of the caldera. The air is thin and the temperature can fall to just a few degrees above zero. As the sun slowly rises, a soft orange light spreads over the thick mist that fills the valley. Bromo and the neighbouring peaks appear to float above the clouds, and many people stand silently, taking photos.","At noon, the same place feels completely different. The mist has disappeared, and the sun makes the sand hot and bright. Visitors ride horses across the sand or climb the steps to the crater, where white smoke rises with a sulphur smell. From the rim, one can look down into the deep crater and hear the low rumble of the volcano. The sandy plain is now dusty and sunny, and the colours look sharper but less magical than at dawn.","The Tengger people, who have lived around the mountain for centuries, consider Bromo a sacred place. Every year they hold a ceremony called Yadnya Kasada, in which they bring offerings of crops and animals to the crater as an expression of gratitude."],"poem":false},{"t":"Text 3: Recount Text","p":["**The Day I Lost the Debate**","Last month, I joined an inter-school debate competition for the first time. Our team, consisting of me, Salma, and Reza, had prepared for two weeks. I was the first speaker, so I felt both proud and terrified. The night before, I could hardly sleep.","On the day of the competition, my hands were cold when I walked onto the stage. I had memorised my speech word for word, but halfway through, I forgot my next sentence. The hall became very quiet. For a few seconds that felt like minutes, I just stood there staring at my paper. Then Salma, who sat in the front row, made a small gesture to remind me to breathe. I took a deep breath and continued with a simpler version of my argument.","Our opponents were from a well-known school and spoke fluently. Reza answered their questions bravely and gave strong examples, but in the end, the judges announced that we had lost by a small margin. I wanted to cry, but our coach, Mr. Anwar, gathered us and said, “You had to start somewhere. The mistakes you made today will teach you more than an easy win.”","After the event, Salma told me that the judges had praised my recovery. I felt disappointed, yet strangely hopeful. On the way home, we wrote down everything we wanted to improve for next time. I realised that being afraid did not make me weak; giving up would. Now I am more determined than ever to keep practising."],"poem":false},{"t":"Text 4: Narrative Text","p":["**The Harbour Lantern**","Nina lived in a small fishing village where the harbour lights went out every night at ten. Her grandfather, a retired fisherman, often told her about the Harbour Lantern, a golden lamp that was said to appear only on stormy nights to guide lost boats home. Nina had always smiled politely at the story. She was fifteen, and she believed in weather forecasts, not lanterns.","One evening in the rainy season, the sky turned the colour of ink, and a strong wind shook the windows. Her older brother, Bima, had left at noon to check his fishing nets and had not returned. The village radio crackled, announcing that all boats should come back immediately. Her mother stood at the door, holding her scarf tightly.","Nina ran to the end of the pier, where the waves crashed against the wooden posts. She could see nothing but darkness and rain. Then, far across the water, a warm golden light flickered into life. It moved slowly from side to side, like someone waving a greeting. Nina rubbed her eyes. The harbour lights were off, and no boat carried such a bright lantern.","“Grandfather was right,” she whispered, and her heart pounded as the light began to drift towards a small dark shape bobbing on the waves. She recognised the shape at once. It was Bima’s boat. The golden light circled it twice and then began to move, as if it wanted to lead the boat toward the narrow entrance of the harbour, where sharp rocks hid beneath the water. Nina grabbed a lamp from the pier post and ran to the end of the rocks, shouting her brother’s name."],"poem":false},{"t":"Text 5: Analytical Exposition Text","p":["**Cities Should Build More Public Libraries**","Cities should build more public libraries in every district. Libraries are not just rooms full of books; they are places where people of all ages can learn, work, and meet.","First, libraries give everyone access to information. Not every family can afford to buy books, newspapers, or an internet connection. A public library lets children, students, and job seekers use these resources for free. In a recent report by a city education office, 70 percent of students who visited a district library at least once a week said it helped them finish their homework on time.","Second, libraries strengthen the reading habit. Children who are taken to the library regularly are more likely to become confident readers. Many libraries also run storytelling sessions and writing workshops, which make reading enjoyable rather than a duty.","Third, libraries provide a safe and quiet community space. After school, teenagers often have few places to go that are free of charge and free from pressure. A library offers a calm place to study together, and it keeps them away from risky activities.","Some people argue that everything can now be found online, so libraries are unnecessary. However, many residents still lack stable internet at home, and not all online information is reliable. Librarians can guide visitors to trustworthy sources.","Therefore, the city government should add libraries now, starting with the districts that have the fewest reading facilities."],"poem":false}],"qs":[{"n":1,"g":0,"tag":"Content II","type":"pg","stem":"According to the text, how long should the seeds be soaked in warm water?","opts":["About one hour.","About twelve hours.","Overnight in cold water.","Until they sprout.","About six hours."],"key":"E","exp":"Langkah 1: direndam sekitar enam jam dalam air hangat."},{"n":2,"g":0,"tag":"Content II","type":"pg","stem":"Why does the writer advise leaving two centimetres of space at the top of the pot?","opts":["So that the pot can hold more soil.","So that water will not overflow when the plant is watered.","So that sunlight can reach the roots.","So that the compost can be added later.","So that the seeds can breathe more easily."],"key":"B","exp":"Langkah 2 menyebut alasannya secara eksplisit: agar air tidak meluap."},{"n":3,"g":0,"tag":"Content III","type":"pg","stem":"Which outline best organises the main points of the text?","opts":["Garden tools – types of pots – the cost of compost – how to sell chilies","Benefits of eating chili – hot sauce recipes – steps – materials","Steps – introduction – tips – materials","Introduction – materials – steps from soaking seeds to caring for the plant – tips on leaf problems","History of chili – famous chili dishes – ways to cook chili – prices at the market"],"key":"D","exp":"Teks berurutan: pengantar, bahan, langkah, tips."},{"n":4,"g":0,"tag":"Content IV","type":"pg","stem":"Which statement best presents the important information from the steps?","opts":["Plant the seeds without soaking and never add compost.","Plant all the seedlings in the same hole and keep them in a dark room.","Soak the seeds, plant them in damp soil, give them plenty of sunlight, keep only the strongest seedling, and water and feed the plant regularly.","Pour a lot of water on the seeds every hour until they sprout.","Use small pots without holes so the soil stays soggy."],"key":"C","exp":"Pernyataan benar menulis ulang inti langkah. Pilihan lain bertentangan dengan teks."},{"n":5,"g":0,"tag":"Content X","type":"pg","stem":"What does the text suggest is a likely cause of yellow leaves?","opts":["The seeds were soaked for too long.","The compost was added too early.","The plant is receiving too much sunlight.","The pot has too many drainage holes.","The plant is receiving too much water."],"key":"E","exp":"Bagian Tips: daun kuning sering berarti tanaman kebanyakan air."},{"n":6,"g":0,"tag":"Content V","type":"pg","stem":"What can be concluded from the steps and the tips?","opts":["Chili plants need as much water as possible.","Chili plants can only be grown in large gardens.","Chili plants grow best without sunlight.","Healthy chili plants need the right amount of water, enough sunlight, and careful thinning of seedlings.","All seedlings should be kept in the same hole."],"key":"D","exp":"Langkah dan tips menunjukkan perlunya air yang pas, sinar matahari, dan memilih bibit terkuat."},{"n":7,"g":1,"tag":"Content II","type":"pg","stem":"According to the text, what do many visitors do at dawn?","opts":["They camp inside the crater.","They ride horses across the sand.","They climb into the crater to see the smoke.","They go to a viewpoint on the edge of the caldera to watch the sunrise.","They hold the Yadnya Kasada ceremony."],"key":"D","exp":"Paragraf kedua: pengunjung menuju titik pandang di tepi kaldera untuk melihat matahari terbit."},{"n":8,"g":1,"tag":"Content III","type":"pg","stem":"Which outline best organises the main points of the text?","opts":["Famous volcanoes in the world – eruptions in history – climbing equipment – the Tengger people","The scene at noon – the Tengger people – the scene at dawn – hotels near the park","Introduction of the volcano – the scene at dawn – the scene at noon – the Tengger people and their ceremony","The scene at dawn – the scene at noon – introduction – national parks in Asia","Introduction – ticket prices – transportation – souvenirs"],"key":"C","exp":"Urutan teks: pengenalan, fajar, tengah hari, masyarakat Tengger dan upacaranya."},{"n":9,"g":1,"tag":"Content IV","type":"pg","stem":"Which statement best presents the important information about Bromo at noon?","opts":["At noon it rains heavily and the sand turns into mud.","At noon the volcano is quiet and nobody can go near it.","At noon the mist is gone, the sand is hot and bright, and visitors ride horses or climb to the smoking crater.","At noon the Tengger people hold their annual ceremony on the sand.","At noon the valley is cold and covered in thick mist, and people take photos in silence."],"key":"C","exp":"Paragraf ketiga menggambarkan Bromo siang hari: kabut hilang, pasir panas, berkuda, dan kawah berasap."},{"n":10,"g":1,"tag":"Content IX","type":"pg","stem":"What can be inferred from the comparison between Bromo at dawn and at noon?","opts":["The same place gives different impressions: cold, misty and quiet at dawn, but hot, bright and more active at noon.","Visitors only come to Bromo at noon.","Bromo is dangerous at dawn but safe at noon.","Bromo looks exactly the same at both times of day.","Bromo is more beautiful at noon than at dawn in every way."],"key":"A","exp":"Teks membandingkan suasana fajar (dingin, berkabut, hening) dengan siang (panas, terang, ramai). Pilihan lain ekstrem."},{"n":11,"g":1,"tag":"Content VI","type":"pg","stem":"Which additional fact would make the text more informative for people planning a visit?","opts":["Bromo is a popular subject for painters.","East Java has many beaches.","Mornings can be very cold, so visitors are advised to bring a warm jacket, and the crater releases sulphur smoke, so a mask is helpful.","Many people enjoy taking photographs of volcanoes.","Horses are animals that can run quickly."],"key":"C","exp":"Fakta tambahan yang informatif adalah saran praktis yang berhubungan dengan kondisi yang dijelaskan teks (dingin dan belerang)."},{"n":12,"g":1,"tag":"Content V","type":"pg","stem":"What can be concluded from the description and the last paragraph?","opts":["Bromo is both a natural attraction and a sacred place of cultural importance for local people.","Bromo is only a place for tourists, with no meaning for local people.","The Tengger people moved away from Bromo.","Bromo is dangerous, so nobody is allowed to visit it.","Bromo is important only because of its sea of sand."],"key":"A","exp":"Paragraf pertama sampai ketiga menggambarkan daya tarik alam; paragraf keempat menunjukkan makna budaya dan spiritual bagi masyarakat Tengger."},{"n":13,"g":2,"tag":"Content VII","type":"pg","stem":"What lesson can be learned from the text?","opts":["People should avoid competitions to prevent embarrassment.","Winning is the only thing that matters in a competition.","Only well-known schools can win debates.","Memorising a speech guarantees success.","Mistakes and failures can become valuable lessons if we keep trying and learning from them."],"key":"E","exp":"Penulis belajar dari kegagalan dan bertekad terus berlatih. Pelajaran: kesalahan dapat menjadi pelajaran jika kita terus mencoba."},{"n":14,"g":2,"tag":"Content XVII","type":"pg","stem":"Which statement best expresses the writer’s feeling after the competition?","opts":["Disappointed but hopeful about the future.","Bored with the activity.","Embarrassed and unwilling to try again.","Angry with the judges and the opponents.","Completely satisfied with the result."],"key":"A","exp":"Teks menyebut “disappointed, yet strangely hopeful”."},{"n":15,"g":2,"tag":"Content XVI","type":"pg","stem":"Which part of the text best shows that Mr. Anwar is a supportive coach?","opts":["“I forgot my next sentence.”","“You had to start somewhere. The mistakes you made today will teach you more than an easy win.”","“Our opponents were from a well-known school and spoke fluently.”","“Our team ... had prepared for two weeks.”","“The judges announced that we had lost by a small margin.”"],"key":"B","exp":"Kata-kata Mr. Anwar menenangkan dan menyemangati tim setelah kalah."},{"n":16,"g":2,"tag":"Content X","type":"pg","stem":"Why was the writer able to continue her speech after forgetting her sentence?","opts":["Salma reminded her to breathe, so she calmed down and used a simpler version of her argument.","Reza took over the speech and finished it.","The hall became noisy and she stopped worrying.","She read the speech from her paper until the end.","The judges stopped the competition and gave her more time."],"key":"A","exp":"Salma memberi isyarat, penulis tenang, lalu melanjutkan dengan versi sederhana."},{"n":17,"g":2,"tag":"Content XI","type":"pg","stem":"What can be inferred about the writer’s character?","opts":["She is determined and willing to learn from failure.","She is jealous of her opponents.","She is arrogant and blames her teammates.","She is careless and does not prepare.","She is lazy and avoids hard work."],"key":"A","exp":"Ia bertekad terus berlatih dan menuliskan hal yang ingin diperbaiki."},{"n":18,"g":2,"tag":"Content IX","type":"pg","stem":"What can be inferred from the comparison between the writer’s feelings before the competition and after it?","opts":["Before, she was nervous and fearful; after, she was disappointed but more determined.","Before, she was confident; after, she was relieved to have won.","Before, she was excited about winning; after, she wanted to quit.","She felt the same way before and after the event.","Before, she was bored; after, she was angry."],"key":"A","exp":"Sebelum: bangga dan sangat takut; sesudah: kecewa tetapi lebih bertekad."},{"n":19,"g":3,"tag":"Content XII","type":"pg","stem":"What is the most likely ending of the story?","opts":["The villagers will blame Nina for the storm.","The golden light will disappear and Nina will go home.","Bima’s boat will hit the rocks and nobody will notice.","Nina and the golden light will help guide Bima’s boat safely past the rocks, and he will return home.","Nina will give up and wait at home with her mother."],"key":"D","exp":"Cahaya emas menuntun perahu Bima dan Nina bergegas membantu dengan lampu. Akhir yang masuk akal: Bima selamat."},{"n":20,"g":3,"tag":"Content XIII","type":"pg","stem":"Which event is most clearly an example of fantasy?","opts":["Nina’s mother held her scarf tightly.","A golden light moved by itself and seemed to guide Bima’s boat.","The village radio announced that boats should return.","A storm shook the windows of the house.","Waves crashed against the wooden posts of the pier."],"key":"B","exp":"Cahaya emas yang bergerak sendiri dan menuntun perahu adalah unsur fantasi. Kejadian lain realistis."},{"n":21,"g":3,"tag":"Content XIII","type":"kat","stem":"Tentukan benar atau salah berdasarkan teks.","sts":["A fishing village with a harbour is a realistic setting","A strong storm in the rainy season is a realistic event","A golden lantern that appears only to guide lost boats is a fantasy element","A radio announcement during a storm is a fantasy element"],"key":["B","B","B","S"],"exp":"Desa nelayan, badai, dan pengumuman radio realistis. Lentera emas yang menuntun perahu adalah fantasi."},{"n":22,"g":3,"tag":"Content XI","type":"pg","stem":"What can be inferred about Nina’s character?","opts":["She is lazy and uninterested in her family.","She is rational at first, but brave and caring when her brother is in danger.","She is fearful and always avoids danger.","She is arrogant and laughs at other people’s beliefs.","She is selfish and thinks only about herself."],"key":"B","exp":"Awalnya ia percaya prakiraan cuaca, lalu bergegas menolong kakaknya."},{"n":23,"g":3,"tag":"Content VIII","type":"pg","stem":"What will Nina most likely do next?","opts":["Run home and tell her mother to call the police.","Throw the lamp into the sea.","Go to bed and think about the story later.","Use the lamp to signal to Bima’s boat and warn him about the rocks.","Wait quietly on the pier until the storm ends."],"key":"D","exp":"Ia membawa lampu, berlari ke ujung karang, dan memanggil kakaknya. Langkah berikutnya: memberi isyarat dengan lampu."},{"n":24,"g":3,"tag":"Content XVI","type":"pg","stem":"Which part of the text best shows that Nina is brave?","opts":["“Her grandfather, a retired fisherman, often told her about the Harbour Lantern.”","“Her mother stood at the door, holding her scarf tightly.”","“Nina rubbed her eyes.”","“She was fifteen, and she believed in weather forecasts, not lanterns.”","“Nina grabbed a lamp from the pier post and ran to the end of the rocks, shouting her brother’s name.”"],"key":"E","exp":"Tindakan berlari ke ujung karang yang berbahaya sambil memanggil kakaknya menunjukkan keberanian."},{"n":25,"g":4,"tag":"Content VI","type":"pg","stem":"Which additional fact would best strengthen the writer’s third argument (libraries as a safe community space)?","opts":["Many people enjoy reading newspapers.","Libraries are often built near schools.","Libraries usually have more books than bookstores.","Some libraries have colourful chairs.","A city that opened evening study rooms in its libraries recorded fewer teenagers on the streets at night and more students using the rooms to study."],"key":"E","exp":"Fakta yang kuat adalah bukti spesifik yang menunjukkan perpustakaan menjadi ruang aman bagi remaja."},{"n":26,"g":4,"tag":"Content XIV","type":"pg","stem":"Which statement from the text is a fact?","opts":["Teenagers need calm places more than anything else.","Libraries make reading enjoyable rather than a duty.","Libraries are the best places in the city.","The city government should add libraries now.","A report found that 70 percent of students who visited a library weekly said it helped them finish their homework on time."],"key":"E","exp":"Laporan dengan angka dapat diperiksa (fakta). Pernyataan lain adalah penilaian atau saran."},{"n":27,"g":4,"tag":"Content XIV","type":"pg","stem":"Which statement from the text is an opinion?","opts":["The city government should add libraries now, starting with the districts that have the fewest reading facilities.","In a recent report, 70 percent of students said the library helped them.","Many residents still lack stable internet at home.","Not every family can afford to buy books, newspapers, or an internet connection.","Many libraries also run storytelling sessions and writing workshops."],"key":"A","exp":"Saran “should” adalah pendapat. Pernyataan lain dapat diperiksa."},{"n":28,"g":4,"tag":"Content XV","type":"pg","stem":"Which statement best evaluates the report in the second paragraph?","opts":["The report is unnecessary because the writer’s opinion is enough.","The report proves that every library in the country is useful.","The report is useful, but it covers only students who visit the library weekly, so it does not prove that libraries help all students.","The report is invalid because libraries cannot help with homework.","The report is fully convincing because it contains a percentage."],"key":"C","exp":"Laporan hanya mencakup siswa yang rutin berkunjung. Tidak cukup untuk menyimpulkan semua siswa."},{"n":29,"g":4,"tag":"Content XV","type":"pg","stem":"What would be the best way to check the writer’s claim that libraries strengthen the reading habit?","opts":["Count the number of books in one library.","Reject the claim because some people use the internet.","Compare the reading habits of children who attend library programmes with similar children who do not, using data from several districts.","Ask only the librarians whether they believe the claim.","Accept the claim because it appears in the first argument."],"key":"C","exp":"Validitas klaim diperiksa dengan membandingkan kelompok serupa dalam beberapa wilayah."},{"n":30,"g":4,"tag":"Content VIII","type":"pg","stem":"If the writer added a paragraph after the fourth paragraph to answer another objection, which idea would be the most likely?","opts":["Teenagers prefer to stay at home all day.","The cost of building and running libraries can be reduced by cooperating with schools and community groups.","Libraries should be closed because books are expensive.","Librarians should replace teachers in schools.","Online shops sell more books than libraries."],"key":"B","exp":"Keberatan berikutnya yang wajar adalah biaya. Penulis akan menjawab dengan solusi kerja sama."}]},{"id":"matwa","title":"Try-Out Matwa","minutes":90,"col":"var(--matwa)","task":"TRY-OUT MATWA","total":30,"map":[["Bilangan",[1,2,3]],["Aljabar: SPL, pertidaksamaan, program linear",[4,5,6]],["Aljabar: fungsi (domain, range, invers, komposisi)",[7,8,9]],["Aljabar: barisan, deret, bunga, pertumbuhan, peluruhan",[10,11,12,13]],["Geometri dan pengukuran (termasuk transformasi)",[14,15,16,17,18,19,20]],["Trigonometri",[21,22,23]],["Data, pencacahan, peluang",[24,25,26,27,28,29,30]]],"groups":[{"t":"Bilangan","p":[],"poem":false},{"t":"Aljabar: SPL, pertidaksamaan, program linear","p":[],"poem":false},{"t":"Aljabar: fungsi","p":[],"poem":false},{"t":"Aljabar: barisan, deret, bunga","p":[],"poem":false},{"t":"Geometri dan pengukuran","p":[],"poem":false},{"t":"Trigonometri","p":[],"poem":false},{"t":"Data, pencacahan, peluang","p":[],"poem":false}],"qs":[{"n":1,"g":0,"tag":"Bilangan","type":"pg","stem":"Nilai dari 8^(2/3) × 2⁻³ ÷ 4⁻¹ adalah ...","opts":["1","4","8","1/2","2"],"key":"E","exp":"8^(2/3) = 4, 2⁻³ = 1/8, dan 4⁻¹ = 1/4. Maka 4 × (1/8) ÷ (1/4) = (1/2) × 4 = 2."},{"n":2,"g":0,"tag":"Bilangan","type":"kat","stem":"Tentukan benar atau salah.","sts":["5⁰ = 1","(−2)³ = 8","16^(3/4) = 8","3⁻² = −9"],"key":["B","S","B","S"],"exp":"(−2)³ = −8. 16^(3/4) = (⁴√16)³ = 2³ = 8. 3⁻² = 1/9, bukan −9."},{"n":3,"g":0,"tag":"Bilangan","type":"mcma","stem":"Pilih SEMUA bentuk yang bernilai 1/27.","opts":["3⁻³","9^(−3/2)","(1/9)³","27^(−1/3)","(1/3)³"],"key":["A","B","E"],"exp":"3⁻³ = 1/27. 9^(−3/2) = 3⁻³ = 1/27. (1/3)³ = 1/27. (1/9)³ = 1/729 dan 27^(−1/3) = 1/3."},{"n":4,"g":1,"tag":"SPL dan program linear","type":"pg","stem":"Diketahui x + y + z = 6, 2x − y + z = 7, dan x − 2y + z = 3. Nilai x + 2y − z adalah ...","opts":["4","3","1","5","2"],"key":"B","exp":"Eliminasi memberi x = 3, y = 1, z = 2. Maka x + 2y − z = 3 + 2 − 2 = 3."},{"n":5,"g":1,"tag":"SPL dan program linear","type":"pg","stem":"Nilai minimum Z = 4x + 3y pada daerah x + y ≥ 5, x + 2y ≥ 8, x ≥ 0, dan y ≥ 0 adalah ...","opts":["12","32","20","15","17"],"key":"D","exp":"Titik sudut (0,5), (2,3), (8,0) dengan Z = 15, 17, 32. Minimum 15."},{"n":6,"g":1,"tag":"SPL dan program linear","type":"pg","stem":"Kafe membuat minuman X (2 sendok kopi, 1 sendok gula) dan Y (1 sendok kopi, 3 sendok gula). Tersedia 40 sendok kopi dan 45 sendok gula. Laba X Rp3.000 dan Y Rp4.000. Laba maksimum adalah ...","opts":["Rp90.000","Rp60.000","Rp85.000","Rp75.000","Rp80.000"],"key":"C","exp":"Kendala 2x + y ≤ 40 dan x + 3y ≤ 45. Titik sudut (20,0), (0,15), (15,10). Laba (ribu): 60, 60, 85. Maksimum Rp85.000."},{"n":7,"g":2,"tag":"Fungsi","type":"pg","stem":"Daerah hasil f(x) = x² − 2x − 3 dengan domain −2 ≤ x ≤ 4 adalah ...","opts":["0 ≤ y ≤ 5","−4 ≤ y ≤ 4","−4 ≤ y ≤ 0","−3 ≤ y ≤ 5","−4 ≤ y ≤ 5"],"key":"E","exp":"Puncak x = 1 (di dalam interval): f(1) = −4. f(−2) = 5 dan f(4) = 5. Range −4 ≤ y ≤ 5."},{"n":8,"g":2,"tag":"Fungsi","type":"pg","stem":"Daerah hasil fungsi f(x) = (2x − 5)/(x + 1) adalah ...","opts":["y ∈ R, y ≠ 5/2","y ∈ R, y ≠ 1/2","y ∈ R, y ≠ −1","y ∈ R, y ≠ 2","y ∈ R, y ≠ −5"],"key":"D","exp":"Untuk (ax + b)/(cx + d), range y ≠ a/c = 2/1 = 2."},{"n":9,"g":2,"tag":"Fungsi","type":"mcma","stem":"Diketahui f(x) = 3x − 2 dan g(x) = x² + 1. Pilih SEMUA pernyataan yang benar.","opts":["(g∘f)(1) = 2","(f∘g)(1) = 5","f⁻¹(4) = 2","(f∘g)(x) = 3x² − 2","g(f(0)) = 5"],"key":["A","C","E"],"exp":"f(1) = 1, g(1) = 2 sehingga A benar. (f∘g)(1) = f(2) = 4 (B salah). f⁻¹(x) = (x + 2)/3 sehingga f⁻¹(4) = 2. (f∘g)(x) = 3(x² + 1) − 2 = 3x² + 1 (D salah). f(0) = −2 dan g(−2) = 5."},{"n":10,"g":3,"tag":"Barisan dan deret","type":"pg","stem":"Barisan aritmetika memiliki 11 suku dan suku tengahnya 25. Jumlah semua suku adalah ...","opts":["330","250","300","275","225"],"key":"D","exp":"Jumlah = banyak suku × suku tengah = 11 × 25 = 275."},{"n":11,"g":3,"tag":"Barisan dan deret","type":"pg","stem":"Jumlah 5 suku pertama barisan geometri 4, 12, 36, ... adalah ...","opts":["242","324","484","968","364"],"key":"C","exp":"a = 4, r = 3. S₅ = 4(3⁵ − 1)/(3 − 1) = 4 · 242/2 = 484."},{"n":12,"g":3,"tag":"Barisan dan deret","type":"pg","stem":"Modal Rp20.000.000 dibungakan majemuk 5% per tahun. Setelah 3 tahun (1,05³ = 1,157625), jumlahnya adalah ...","opts":["Rp23.305.000","Rp23.100.000","Rp23.152.500","Rp22.050.000","Rp23.000.000"],"key":"C","exp":"20.000.000 × 1,157625 = 23.152.500."},{"n":13,"g":3,"tag":"Barisan dan deret","type":"kat","stem":"Populasi ikan 2.000 ekor menurun 10% per tahun dari jumlah tahun sebelumnya. Tentukan benar atau salah.","sts":["Setelah 1 tahun populasinya 1.800 ekor","Setelah 2 tahun populasinya 1.600 ekor","Populasi tiap tahun membentuk barisan geometri dengan rasio 0,9","Setelah 3 tahun populasinya masih lebih dari 1.400 ekor"],"key":["B","S","B","B"],"exp":"2.000 × 0,9 = 1.800. 2.000 × 0,9² = 1.620, bukan 1.600. Rasio 0,9. 2.000 × 0,9³ = 1.458 > 1.400."},{"n":14,"g":4,"tag":"Geometri","type":"pg","stem":"Tiang bendera setinggi 6 m berbayangan 4 m. Pada saat yang sama, bayangan sebuah gedung 30 m. Tinggi gedung adalah ...","opts":["45 m","60 m","36 m","50 m","40 m"],"key":"A","exp":"Kesebangunan: 6/4 = t/30 → t = 45 m."},{"n":15,"g":4,"tag":"Geometri","type":"pg","stem":"Dua kapal berangkat dari pelabuhan yang sama. Kapal A berlayar ke utara 24 km, kapal B ke timur 7 km. Jarak kedua kapal adalah ...","opts":["31 km","28 km","25 km","23 km","17 km"],"key":"C","exp":"Pythagoras: √(24² + 7²) = √625 = 25 km."},{"n":16,"g":4,"tag":"Geometri","type":"pg","stem":"Pada kubus ABCD.EFGH dengan rusuk 6 cm, jarak titik C ke garis AG adalah ...","opts":["2√6 cm","3√2 cm","3√6 cm","6 cm","2√3 cm"],"key":"A","exp":"Misal A(0,0,0), C(6,6,0), arah AG = (1,1,1). |AC × (1,1,1)|/√3 = |(6,−6,0)|/√3 = 6√2/√3 = 2√6 cm."},{"n":17,"g":4,"tag":"Geometri","type":"pg","stem":"Sebuah bola berjari-jari 6 cm tepat masuk ke dalam tabung (tinggi tabung = diameter bola). Volume ruang kosong di dalam tabung di luar bola adalah ...","opts":["432π cm³","288π cm³","216π cm³","72π cm³","144π cm³"],"key":"E","exp":"Tabung: π·36·12 = 432π. Bola: (4/3)π·216 = 288π. Selisih = 144π."},{"n":18,"g":4,"tag":"Geometri","type":"kat","stem":"Titik P(−2, 5) ditransformasi. Tentukan benar atau salah.","sts":["Bayangan oleh refleksi terhadap sumbu y adalah (2, 5)","Bayangan oleh rotasi 180° dengan pusat O adalah (2, −5)","Bayangan oleh translasi (3, −4) adalah (1, 1)","Bayangan oleh dilatasi pusat O faktor 1/2 adalah (−1, 5)"],"key":["B","B","B","S"],"exp":"Dilatasi faktor 1/2: (−1, 5/2), bukan (−1, 5)."},{"n":19,"g":4,"tag":"Geometri","type":"pg","stem":"Titik B(3, −1) dirotasi 90° searah jarum jam dengan pusat O, lalu dicerminkan terhadap sumbu x. Bayangan akhirnya adalah ...","opts":["(−1, 3)","(1, −3)","(3, 1)","(1, 3)","(−1, −3)"],"key":"A","exp":"Rotasi 90° searah jarum jam: (x, y) → (y, −x) = (−1, −3). Refleksi sumbu x: (−1, 3)."},{"n":20,"g":4,"tag":"Geometri","type":"pg","stem":"Dua garis sejajar dipotong oleh transversal. Sudut-sudut dalam sepihak besarnya (3x + 10)° dan (2x + 20)°. Besar sudut yang lebih besar adalah ...","opts":["110°","100°","80°","90°","120°"],"key":"B","exp":"Dalam sepihak berjumlah 180°: 5x + 30 = 180 → x = 30. Sudutnya 100° dan 80°."},{"n":21,"g":5,"tag":"Trigonometri","type":"pg","stem":"Jika cos θ = 5/13 dan θ lancip, nilai csc θ + cot θ adalah ...","opts":["3/2","5/2","25/12","13/5","17/12"],"key":"A","exp":"sin θ = 12/13. csc θ = 13/12 dan cot θ = 5/12. Jumlah = 18/12 = 3/2."},{"n":22,"g":5,"tag":"Trigonometri","type":"pg","stem":"Pengamat setinggi mata 1,5 m melihat puncak menara dengan sudut elevasi 60° dari jarak 15 m dari dasar menara. Tinggi menara adalah ...","opts":["(15√3 + 1,5) m","(15 + 1,5) m","15√3 m","(30√3 + 1,5) m","(5√3 + 1,5) m"],"key":"A","exp":"Tinggi dari mata = 15 tan 60° = 15√3. Ditambah tinggi mata 1,5 m."},{"n":23,"g":5,"tag":"Trigonometri","type":"kat","stem":"Tentukan benar atau salah.","sts":["sin 60° = ½√3","cot 45° = 1","sec 30° = ⅔√3","csc 30° = 1/2"],"key":["B","B","B","S"],"exp":"sec 30° = 1/cos 30° = 2/√3 = ⅔√3. csc 30° = 1/sin 30° = 2, bukan 1/2."},{"n":24,"g":6,"tag":"Data","type":"pg","stem":"Rata-rata 8 data adalah 12. Jika ditambahkan data 20 dan 14, rata-rata barunya adalah ...","opts":["13","12,5","13,5","14","12"],"key":"A","exp":"Jumlah awal 96. Ditambah 34 = 130. 130/10 = 13."},{"n":25,"g":6,"tag":"Data","type":"pg","stem":"Tabel nilai 40 siswa: 31–40 (6), 41–50 (10), 51–60 (16), 61–70 (6), 71–80 (2). Median data tersebut adalah ...","opts":["55","53,5","52,5","53","54"],"key":"D","exp":"Kelas median 51–60 (kumulatif sebelumnya 16). Me = 50,5 + ((20 − 16)/16) · 10 = 53."},{"n":26,"g":6,"tag":"Data","type":"pg","stem":"Variansi data 3, 5, 6, 7, 9 adalah ...","opts":["20","4","5","2","3"],"key":"B","exp":"Rata-rata 6. Σ(x − 6)² = 9 + 1 + 0 + 1 + 9 = 20. Variansi = 20/5 = 4."},{"n":27,"g":6,"tag":"Data","type":"kat","stem":"Penjualan sebuah toko Senin sampai Jumat: 12, 18, 15, 20, 25 unit. Tentukan benar atau salah.","sts":["Total penjualan lima hari adalah 90 unit","Rata-rata penjualan per hari adalah 18 unit","Kenaikan penjualan dari Kamis ke Jumat adalah 25%","Penjualan hari Selasa lebih tinggi daripada rata-rata"],"key":["B","B","B","S"],"exp":"Total 90, rata-rata 18. (25 − 20)/20 = 25%. Penjualan Selasa 18 sama dengan rata-rata, bukan lebih tinggi."},{"n":28,"g":6,"tag":"Pencacahan","type":"pg","stem":"Dari angka 1, 2, 3, 4, 5 dibuat bilangan genap tiga angka dengan angka-angka berbeda. Banyak bilangan adalah ...","opts":["60","24","36","48","12"],"key":"B","exp":"Satuan: 2 atau 4 (2 pilihan). Ratusan 4 pilihan, puluhan 3 pilihan. 2 × 4 × 3 = 24."},{"n":29,"g":6,"tag":"Pencacahan","type":"pg","stem":"Tim 4 orang dipilih dari 5 putra dan 4 putri dengan paling sedikit 2 putri. Banyak cara memilih adalah ...","opts":["85","126","45","81","66"],"key":"D","exp":"Total C(9,4) = 126. Tanpa putri: C(5,4) = 5. Satu putri: C(5,3)·C(4,1) = 40. Paling sedikit 2 putri = 126 − 5 − 40 = 81."},{"n":30,"g":6,"tag":"Peluang","type":"pg","stem":"Dua kartu diambil berturut-turut tanpa pengembalian dari 10 kartu bernomor 1 sampai 10. Peluang keduanya bernomor genap adalah ...","opts":["5/18","4/9","1/5","1/4","2/9"],"key":"E","exp":"(5/10)(4/9) = 20/90 = 2/9."}]},{"id":"matlan","title":"Try-Out Matlan","minutes":90,"col":"var(--matlan)","task":"TRY-OUT MATLAN","total":30,"map":[["Matriks",[1,2,3,4]],["Suku banyak (teorema sisa)",[5,6,7,8]],["Fungsi: domain, range, asimtot",[9,10,11,12]],["Grafik fungsi trigonometri",[13,14]],["Vektor",[15,16,17,18]],["Garis singgung dan persamaan lingkaran",[19,20,21,22]],["Transformasi dan matriks transformasi",[23,24,25,26]],["Limit",[27,28,29,30]]],"groups":[{"t":"Matriks","p":[],"poem":false},{"t":"Suku banyak (teorema sisa)","p":[],"poem":false},{"t":"Fungsi: domain, range, asimtot","p":[],"poem":false},{"t":"Grafik fungsi trigonometri","p":[],"poem":false},{"t":"Vektor","p":[],"poem":false},{"t":"Lingkaran","p":[],"poem":false},{"t":"Transformasi dan matriks transformasi","p":[],"poem":false},{"t":"Limit","p":[],"poem":false}],"qs":[{"n":1,"g":0,"tag":"Matriks","type":"pg","stem":"Diketahui A = (2 3 ; 1 4) dan B = (1 −1 ; 2 3). Nilai det(AB) adalah ...","opts":["10","15","20","5","25"],"key":"E","exp":"det A = 8 − 3 = 5 dan det B = 3 + 2 = 5. det(AB) = 5 × 5 = 25."},{"n":2,"g":0,"tag":"Matriks","type":"pg","stem":"Diketahui A = (1 2 ; 1 3) dan XA = (3 7) dengan X = (x y). Nilai x − y adalah ...","opts":["3","1","0","−1","2"],"key":"B","exp":"det A = 1, A⁻¹ = (3 −2 ; −1 1). X = (3 7)A⁻¹ = (9 − 7, −6 + 7) = (2, 1). Maka x − y = 1."},{"n":3,"g":0,"tag":"Matriks","type":"pg","stem":"Nilai determinan matriks (1 2 0 ; 3 −1 2 ; 0 4 1) adalah ...","opts":["−9","−21","−3","−15","15"],"key":"D","exp":"1(−1·1 − 2·4) − 2(3·1 − 2·0) + 0 = −9 − 6 = −15."},{"n":4,"g":0,"tag":"Matriks","type":"mcma","stem":"Matriks A berordo 2 × 2 dengan det A = 2. Pilih SEMUA pernyataan yang benar.","opts":["det(3A) = 18","det(A⁻¹) = 1/2","det(Aᵀ) = −2","det(−A) = −2","det(A²) = 4"],"key":["A","B","E"],"exp":"det(3A) = 3²·2 = 18. det(A⁻¹) = 1/2. det(Aᵀ) = 2 (bukan −2). det(−A) = (−1)²·2 = 2 (bukan −2). det(A²) = 2² = 4."},{"n":5,"g":1,"tag":"Suku banyak","type":"pg","stem":"Suku banyak f(x) dibagi (x + 1) bersisa 4 dan dibagi (x − 3) bersisa 12. Sisa pembagian f(x) oleh x² − 2x − 3 adalah ...","opts":["−2x + 2","2x − 6","2x + 6","3x + 7","x + 5"],"key":"C","exp":"x² − 2x − 3 = (x − 3)(x + 1). Sisa mx + n: −m + n = 4 dan 3m + n = 12 → m = 2, n = 6."},{"n":6,"g":1,"tag":"Suku banyak","type":"pg","stem":"Suku banyak x³ − ax² + bx − 12 habis dibagi (x − 2) dan (x + 3). Nilai a + b adalah ...","opts":["−1","−5","7","1","−7"],"key":"E","exp":"f(2) = 0: −4a + 2b = 4. f(−3) = 0: −9a − 3b = 39. Penyelesaian a = −3, b = −4. a + b = −7."},{"n":7,"g":1,"tag":"Suku banyak","type":"pg","stem":"Salah satu akar x³ − 6x² + 11x − 6 = 0 adalah 1. Jumlah kuadrat kedua akar lainnya adalah ...","opts":["25","12","5","13","14"],"key":"D","exp":"Akar-akarnya 1, 2, 3. Kuadrat akar lainnya: 4 + 9 = 13."},{"n":8,"g":1,"tag":"Suku banyak","type":"kat","stem":"Suku banyak f(x) = 2x³ − 3x² − 11x + 6. Tentukan benar atau salah.","sts":["(x − 3) adalah faktor f(x)","f(−2) = 0","Sisa f(x) dibagi (x − 1) adalah 6","Hasil kali akar-akar f(x) = 0 adalah −3"],"key":["B","B","S","B"],"exp":"f(x) = (x − 3)(x + 2)(2x − 1). f(1) = −6 (bukan 6). Hasil kali akar = −d/a = −6/2 = −3."},{"n":9,"g":2,"tag":"Fungsi","type":"pg","stem":"Domain fungsi f(x) = √(x² − 9)/(x − 5) adalah ...","opts":["{x | x ≠ 5}","{x | −3 ≤ x ≤ 3}","{x | x ≤ −3 atau x ≥ 3}","{x | x ≤ −3 atau x ≥ 3, x ≠ 5}","{x | x > 3, x ≠ 5}"],"key":"D","exp":"x² − 9 ≥ 0 → x ≤ −3 atau x ≥ 3. Penyebut x ≠ 5."},{"n":10,"g":2,"tag":"Fungsi","type":"pg","stem":"Daerah hasil fungsi f(x) = 2·3ˣ − 5 adalah ...","opts":["y > 5","y ≥ −5","y > −5","y ≥ 2","y > 0"],"key":"C","exp":"3ˣ > 0 sehingga 2·3ˣ > 0, maka f(x) > −5."},{"n":11,"g":2,"tag":"Fungsi","type":"pg","stem":"Persamaan asimtot horizontal fungsi f(x) = (4x³ − x)/(2x³ + 5) adalah ...","opts":["tidak ada asimtot horizontal","y = 0","y = 2","y = 1/2","y = 4"],"key":"C","exp":"Derajat sama: y = 4/2 = 2."},{"n":12,"g":2,"tag":"Fungsi","type":"kat","stem":"Fungsi f(x) = (x² − 1)/(x − 1). Tentukan benar atau salah.","sts":["Domain f adalah semua bilangan real kecuali x = 1","f(x) = x + 1 untuk x ≠ 1","Grafik f memiliki asimtot vertikal x = 1","Daerah hasil f adalah semua bilangan real kecuali y = 2"],"key":["B","B","S","B"],"exp":"(x − 1)(x + 1)/(x − 1) = x + 1, sehingga di x = 1 hanya ada lubang (bukan asimtot). Karena x ≠ 1, y ≠ 2."},{"n":13,"g":3,"tag":"Trigonometri","type":"pg","stem":"Fungsi y = 3 cos (2x − π/2) + 1 memiliki amplitudo, periode, dan pergeseran fase berturut-turut ...","opts":["3, π, dan π/4 ke kanan","6, π/2, dan π/4 ke kanan","1, π, dan π/4 ke kiri","3, π, dan π/2 ke kiri","3, 2π, dan π/2 ke kanan"],"key":"A","exp":"2x − π/2 = 2(x − π/4). Amplitudo 3, periode 2π/2 = π, pergeseran π/4 ke kanan."},{"n":14,"g":3,"tag":"Trigonometri","type":"pg","stem":"Grafik fungsi kosinus memiliki nilai maksimum 5, nilai minimum −1, periode 4π, dan maksimum di x = 0. Persamaannya adalah ...","opts":["y = 5 cos (x/2) − 1","y = 6 cos (x/2) + 2","y = 3 cos (x/2) + 2","y = 3 cos 2x + 2","y = 3 sin (x/2) + 2"],"key":"C","exp":"Amplitudo (5 − (−1))/2 = 3. Garis tengah (5 + (−1))/2 = 2. B = 2π/4π = 1/2. Maksimum di x = 0 berarti kosinus."},{"n":15,"g":4,"tag":"Vektor","type":"pg","stem":"Diketahui a = (1, 2, 2) dan b = (2, −1, 2). Nilai cosinus sudut antara a dan b adalah ...","opts":["4/9","2/9","4/3","1/3","8/9"],"key":"A","exp":"a · b = 2 − 2 + 4 = 4. |a| = 3 dan |b| = 3. cos θ = 4/9."},{"n":16,"g":4,"tag":"Vektor","type":"pg","stem":"Proyeksi vektor a = (3, −1, 2) pada b = (1, 2, −2) adalah ...","opts":["(−1, −2, 2)","(1/3, 2/3, −2/3)","(−1/9, −2/9, 2/9)","(−3, 6, −6)","(−1/3, −2/3, 2/3)"],"key":"E","exp":"a · b = −3 dan |b|² = 9. Proyeksi vektor = (−3/9)(1, 2, −2) = (−1/3, −2/3, 2/3)."},{"n":17,"g":4,"tag":"Vektor","type":"pg","stem":"Titik A(2, −1, 3) dan B(8, 5, −3). Titik P pada AB dengan AP : PB = 2 : 1 berkoordinat ...","opts":["(6, 3, −1)","(10, 7, −5)","(6, 3, 1)","(4, 1, 1)","(5, 2, 0)"],"key":"A","exp":"P = (1·A + 2·B)/3 = ((2 + 16)/3, (−1 + 10)/3, (3 − 6)/3) = (6, 3, −1)."},{"n":18,"g":4,"tag":"Vektor","type":"mcma","stem":"Diketahui a = (2, −1, k) dan b = (1, 3, 2). Pilih SEMUA pernyataan yang benar.","opts":["a tegak lurus b jika k = 1/2","|b| = √14","a sejajar b untuk suatu nilai k","untuk k = 2, a · b = 3","untuk k = 0, a · b = 2"],"key":["A","B","D"],"exp":"a · b = 2 − 3 + 2k = 2k − 1, nol bila k = 1/2. |b| = √14. a sejajar b tidak mungkin (2 : 1 ≠ −1 : 3). k = 2 memberi 3. k = 0 memberi −1, bukan 2."},{"n":19,"g":5,"tag":"Lingkaran","type":"pg","stem":"Persamaan lingkaran berpusat di (2, −3) dan menyinggung garis 3x + 4y − 2 = 0 adalah ...","opts":["(x + 2)² + (y − 3)² = 64/25","(x − 2)² + (y + 3)² = 64/25","(x − 2)² + (y + 3)² = 8/5","(x − 2)² + (y + 3)² = 8","(x − 2)² + (y + 3)² = 4"],"key":"B","exp":"Jari-jari = jarak pusat ke garis = |6 − 12 − 2|/5 = 8/5. Persamaan: (x − 2)² + (y + 3)² = 64/25."},{"n":20,"g":5,"tag":"Lingkaran","type":"pg","stem":"Persamaan garis singgung lingkaran x² + y² − 4x + 6y − 12 = 0 di titik (5, 1) adalah ...","opts":["3x + 4y = 19","3x − 4y = 11","3x + 4y = 5","x + y = 6","4x + 3y = 23"],"key":"A","exp":"Pusat (2, −3), r = 5. Garis singgung: (5 − 2)(x − 2) + (1 + 3)(y + 3) = 25 → 3x + 4y = 19."},{"n":21,"g":5,"tag":"Lingkaran","type":"pg","stem":"Persamaan garis singgung lingkaran x² + y² = 20 yang bergradien 2 adalah ...","opts":["y = 2x ± 10","y = 2x ± 4√5","y = 2x ± 5","y = 2x ± 20","y = 2x ± 2√5"],"key":"A","exp":"y = mx ± r√(1 + m²) = 2x ± √20·√5 = 2x ± 10."},{"n":22,"g":5,"tag":"Lingkaran","type":"kat","stem":"Lingkaran x² + y² − 6x + 8y = 0. Tentukan benar atau salah.","sts":["Lingkaran melalui titik asal","Pusat lingkaran adalah (3, −4)","Jari-jari lingkaran adalah 25","Titik (6, 0) terletak pada lingkaran"],"key":["B","B","S","B"],"exp":"Pusat (3, −4), r = √(9 + 16) = 5. Titik (0,0) dan (6,0) memenuhi persamaan."},{"n":23,"g":6,"tag":"Transformasi","type":"pg","stem":"Titik (2, 5) dirotasi 90° berlawanan arah jarum jam dengan pusat O, lalu dicerminkan terhadap sumbu y. Bayangan akhirnya adalah ...","opts":["(5, 2)","(−5, 2)","(2, −5)","(5, −2)","(−2, 5)"],"key":"A","exp":"Rotasi: (x, y) → (−y, x) = (−5, 2). Refleksi sumbu y: (5, 2)."},{"n":24,"g":6,"tag":"Transformasi","type":"pg","stem":"Garis x + y = 3 ditransformasi oleh matriks (2 0 ; 0 3). Persamaan bayangannya adalah ...","opts":["x + y = 6","3x + 2y = 9","2x + 3y = 18","3x + 2y = 18","2x + 3y = 6"],"key":"D","exp":"x′ = 2x dan y′ = 3y, jadi x = x′/2 dan y = y′/3. x′/2 + y′/3 = 3 → 3x′ + 2y′ = 18."},{"n":25,"g":6,"tag":"Transformasi","type":"pg","stem":"Titik A(2, 4) didilatasi dengan pusat (1, 2) dan faktor 3. Bayangannya adalah ...","opts":["(7, 14)","(4, 8)","(3, 6)","(6, 12)","(4, 6)"],"key":"B","exp":"A′ = (1 + 3(2 − 1), 2 + 3(4 − 2)) = (4, 8)."},{"n":26,"g":6,"tag":"Transformasi","type":"kat","stem":"Matriks T = (3 1 ; 2 2). Tentukan benar atau salah.","sts":["Luas bayangan suatu bangun adalah 4 kali luas semula","T memiliki invers","T merupakan matriks rotasi","Bayangan titik (1, 1) oleh T adalah (4, 4)"],"key":["B","B","S","B"],"exp":"det T = 6 − 2 = 4, jadi luas menjadi 4 kali dan T punya invers. Matriks rotasi memiliki determinan 1. T(1, 1) = (3 + 1, 2 + 2) = (4, 4)."},{"n":27,"g":7,"tag":"Limit","type":"pg","stem":"lim (x → 3) (x² − 9)/(√(x + 1) − 2) = ...","opts":["12","24","6","8","4"],"key":"B","exp":"Kalikan sekawan: (x − 3)(x + 3)(√(x + 1) + 2)/(x − 3) = (x + 3)(√(x + 1) + 2) → 6·4 = 24."},{"n":28,"g":7,"tag":"Limit","type":"pg","stem":"lim (x → 0) (1 − cos 4x)/x² = ...","opts":["16","4","1/2","8","2"],"key":"D","exp":"1 − cos 4x = 2 sin² 2x. Maka 2(sin 2x)²/x² → 2·4 = 8."},{"n":29,"g":7,"tag":"Limit","type":"pg","stem":"lim (x → ∞) (3x² − 5x)/√(4x⁴ + 1) = ...","opts":["∞","2","0","3","3/2"],"key":"E","exp":"√(4x⁴ + 1) ≈ 2x². Rasio koefisien: 3/2."},{"n":30,"g":7,"tag":"Limit","type":"pg","stem":"lim (x → 0) (tan 3x − sin 3x)/x³ = ...","opts":["9","0","9/2","27","27/2"],"key":"E","exp":"tan 3x − sin 3x = tan 3x (1 − cos 3x) ≈ (3x)(9x²/2) = 27x³/2. Limit = 27/2."}]}];
+var QSL='ABCDE';
+var QS={id:null,view:'',i:0,iv:null,ri:0,exp:false,att:null,armed:false,warned:false};
+function qzById(id){for(var i=0;i<QZ.length;i++)if(QZ[i].id===id)return QZ[i];return null;}
+function qzSt(id){var s=store.q[id];if(!s||typeof s!=='object'){s=store.q[id]={att:[]};}if(!Array.isArray(s.att))s.att=[];return s;}
+function qzOk(q,a){
+  if(q.type==='pg')return a===q.key;
+  if(q.type==='mcma')return Array.isArray(a)&&a.slice().sort().join('')===q.key.slice().sort().join('');
+  return Array.isArray(a)&&a.length===q.key.length&&q.key.every(function(k,i){return a[i]===k;});
+}
+function qzAns(q,a){
+  if(q.type==='pg')return !!a;
+  if(q.type==='mcma')return Array.isArray(a)&&a.length>0;
+  return Array.isArray(a)&&a.some(function(x){return !!x;});
+}
+function rich(s){return esc(s).split('**').map(function(t,i){return i%2?'<b>'+t+'</b>':t;}).join('');}
+function qzAnsTxt(Q,a,isKey){
+  if(Q.type==='pg'){if(!a)return '(kosong)';var o=Q.opts[QSL.indexOf(a)];return a+'. '+esc(o||'');}
+  if(Q.type==='mcma'){if(!Array.isArray(a)||!a.length)return '(kosong)';return a.slice().sort().map(function(l){return l+'. '+esc(Q.opts[QSL.indexOf(l)]||'');}).join('<br>');}
+  if(!Array.isArray(a)||!a.some(function(x){return !!x;}))return '(kosong)';
+  return Q.sts.map(function(s,i){return (i+1)+'. '+(a[i]==='B'?'Benar':(a[i]==='S'?'Salah':'(kosong)'));}).join('<br>');
+}
+function qzDate(t){try{return new Date(t).toLocaleString('id-ID',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});}catch(e){return '';}}
+function qzTop(Z,sub,right){return '<div class="qz-top" style="--c:'+Z.col+'"><div class="tt"><b>'+esc(Z.title)+'</b><span>'+sub+'</span></div>'+right+'</div>';}
+function qzStim(Z,Q){
+  var G=Z.groups[Q.g];if(!G||!G.p||!G.p.length)return '';
+  var t=G.p.map(function(p){return '<p'+(G.poem?' class="poem"':'')+'>'+rich(p)+'</p>';}).join('');
+  return '<details class="qz-stim" open><summary>'+esc(G.t)+'</summary><div class="tx">'+t+'</div></details>';
+}
+function qzQBlock(Z,Q,a,interactive){
+  var h='<div class="qz-q" style="--c:'+Z.col+'"><div class="no">Soal '+Q.n+'<span class="tag">'+esc(Q.tag)+'</span></div><div class="sm">'+rich(Q.stem)+(Q.type==='mcma'?' <i>(boleh lebih dari satu)</i>':'')+'</div>';
+  if(Q.type==='pg'||Q.type==='mcma'){
+    Q.opts.forEach(function(o,i){var L=QSL[i],sel=Q.type==='pg'?(a===L):(Array.isArray(a)&&a.indexOf(L)>-1);
+      h+='<label class="qz-opt'+(sel?' sel':'')+'"><input type="'+(Q.type==='pg'?'radio':'checkbox')+'" name="qzo" value="'+L+'" data-qz-in="'+(Q.type==='pg'?'pg':'mc')+'"'+(sel?' checked':'')+(interactive?'':' disabled')+'><span class="lt">'+L+'</span><span class="tx2">'+rich(o)+'</span></label>';});
+  }else{
+    Q.sts.forEach(function(s,i){var v=Array.isArray(a)?a[i]:null;
+      h+='<div class="qz-st"><span>'+rich(s)+'</span><span class="qz-bs">'+['B','S'].map(function(x){return '<label class="'+(v===x?'sel':'')+'"><input type="radio" name="qzs'+i+'" value="'+x+'" data-qz-in="kt" data-s="'+i+'"'+(v===x?' checked':'')+(interactive?'':' disabled')+'>'+(x==='B'?'Benar':'Salah')+'</label>';}).join('')+'</span></div>';});
+  }
+  return h+'</div>';
+}
+function qzRemain(Z,cur){return Z.minutes*60-Math.floor((Date.now()-cur.start)/1000);}
+function qzTimeTxt(Z,cur){
+  if(cur.mode==='ulang')return{t:mmss(Math.floor((Date.now()-cur.start)/1000)),late:false};
+  var r=qzRemain(Z,cur);return r>=0?{t:mmss(r),late:false}:{t:'+'+mmss(-r),late:true};
+}
+function qzDraw(){
+  var Z=qzById(QS.id);if(!Z)return;var st=qzSt(Z.id),el=$('qz'),m0=el.querySelector('.qz-main'),sc=m0?m0.scrollTop:0,h='';
+  el.style.setProperty('--c',Z.col);
+  if(QS.view==='intro')h=qzIntro(Z,st);
+  else if(QS.view==='exam'&&st.cur)h=qzExam(Z,st);
+  else if(QS.view==='review')h=qzReview(Z,st);
+  else{QS.view='result';h=qzResult(Z,st);}
+  el.innerHTML=h;
+  var m1=el.querySelector('.qz-main');if(m1&&QS.keep)m1.scrollTop=sc;QS.keep=false;
+}
+function qzIntro(Z,st){
+  var h=qzTop(Z,Z.total+' soal · '+Z.minutes+' menit','<button type="button" class="btn" data-qz="close">Tutup</button>');
+  h+='<div class="qz-main"><div class="qz-in"><div class="qz-box"><h2 style="margin:0 0 8px;font:700 1.05rem var(--font-display)">Sebelum mulai</h2><ul style="margin:0 0 12px;padding-left:20px"><li>Kerjakan sekali duduk, tanpa membuka catatan'+(Z.id==='matwa'||Z.id==='matlan'?' dan tanpa kalkulator':'')+'.</li><li>Waktu '+Z.minutes+' menit berjalan sejak kamu menekan Mulai, bahkan saat halaman ditutup.</li><li>Waktu habis tidak mematikan ujian; hanya ditandai terlambat.</li><li>Jawaban tersimpan otomatis. Skor dan peta kelemahan muncul setelah dikumpulkan.</li></ul><button type="button" class="btn pri" data-qz="start" data-m="full">Mulai try-out</button></div>'+qzHist(st)+'</div></div>';
+  return h;
+}
+function qzHist(st){
+  if(!st.att.length)return '';
+  var l=st.att.slice(-6).reverse().map(function(a){return '<li>'+qzDate(a.t)+' · '+a.s+'/'+a.n+' ('+Math.round(a.s/a.n*100)+'%)'+(a.mode==='ulang'?' · ulang soal salah':'')+(a.late>0?' · terlambat':'')+'</li>';}).join('');
+  return '<div class="qz-box"><b>Riwayat</b><ul class="qz-hist">'+l+'</ul></div>';
+}
+function qzExam(Z,st){
+  var cur=st.cur,idx=cur.idxs[QS.i],Q=Z.qs[idx],a=cur.ans[idx],tm=qzTimeTxt(Z,cur);
+  var unans=0;cur.idxs.forEach(function(ix){if(!qzAns(Z.qs[ix],cur.ans[ix]))unans++;});
+  var right='<div class="qz-time'+(tm.late?' late':'')+'" id="qzTime">'+tm.t+'</div><button type="button" class="btn pri" data-qz="submit">'+(QS.armed?'Yakin? '+unans+' soal kosong. Ketuk lagi':'Kumpulkan')+'</button><button type="button" class="btn" data-qz="exit">Keluar</button>';
+  var h=qzTop(Z,'Soal '+(QS.i+1)+' dari '+cur.idxs.length+(cur.mode==='ulang'?' · mode ulang soal salah':'')+(tm.late?' · terlambat':''),right);
+  h+='<div class="qz-nums" role="group" aria-label="Nomor soal">'+cur.idxs.map(function(ix,j){var q=Z.qs[ix];return '<button type="button" class="qz-n'+(j===QS.i?' cur':'')+(qzAns(q,cur.ans[ix])?' ans':'')+(cur.fl[ix]?' fl':'')+'" data-qz="go" data-j="'+j+'" aria-label="Soal '+q.n+'">'+q.n+'</button>';}).join('')+'</div>';
+  h+='<div class="qz-main"><div class="qz-in">'+qzStim(Z,Q)+qzQBlock(Z,Q,a,true)+'</div></div>';
+  var last=QS.i===cur.idxs.length-1;
+  h+='<div class="qz-nav"><button type="button" class="btn" data-qz="prev"'+(QS.i===0?' disabled':'')+'>Sebelumnya</button><button type="button" class="btn'+(cur.fl[idx]?' on':'')+'" data-qz="flag">'+(cur.fl[idx]?'Ragu (ditandai)':'Tandai ragu')+'</button><button type="button" class="btn'+(last?'':' pri')+'" data-qz="'+(last?'submit':'next')+'">'+(last?'Kumpulkan':'Berikutnya')+'</button></div>';
+  return h;
+}
+function qzMapStats(Z,att){
+  var out=[];Z.map.forEach(function(m){var c=0,t=0;m[1].forEach(function(n){var ix=n-1;if(att.idxs.indexOf(ix)>-1){t++;if(qzOk(Z.qs[ix],att.ans[ix]))c++;}});if(t)out.push({l:m[0],c:c,t:t});});return out;
+}
+function qzResult(Z,st){
+  var att=QS.att||st.att[st.att.length-1];
+  if(!att){QS.view='intro';return qzIntro(Z,st);}
+  var p=Math.round(att.s/att.n*100),ul=att.mode==='ulang';
+  var h=qzTop(Z,ul?'Hasil ulang soal salah':'Hasil try-out','<button type="button" class="btn" data-qz="close">Tutup</button>');
+  h+='<div class="qz-main"><div class="qz-in">';
+  h+='<div class="qz-box"><p class="lab">'+(ul?'Ulang soal salah':'Skor')+'</p><div class="qz-score">'+att.s+'<small style="font-size:1.2rem;color:var(--muted)">/'+att.n+'</small> <span style="font-size:1.5rem;color:var(--c)">'+p+'%</span></div><p class="small" style="margin-top:6px">'+qzDate(att.t)+' · durasi '+mmss(att.dur)+(ul?'':(att.late>0?' · terlambat '+mmss(att.late):' · tepat waktu'))+'</p><p style="margin:8px 0 0;font-weight:700" class="'+(p>=75?'qz-ok':'qz-bad')+'">'+(p>=75?'Target 75% tercapai.':'Di bawah target 75%. Perbaiki lewat soal yang salah.')+'</p></div>';
+  h+='<div class="qz-box"><b>Peta kelemahan</b>'+qzMapStats(Z,att).map(function(s){var pp=Math.round(s.c/s.t*100);return '<div style="margin-top:10px"><div class="row" style="margin:0 0 2px"><span>'+esc(s.l)+'</span><b>'+s.c+'/'+s.t+'</b></div><div class="qz-bar" style="--c:'+(pp>=75?'var(--ok)':'var(--ujian)')+'"><div class="bar"><i style="width:'+pp+'%"></i></div><span>'+pp+'%</span></div></div>';}).join('')+'</div>';
+  h+='<div class="qz-box"><b>Nomor soal</b> <span class="small">(ketuk untuk melihat jawaban dan pembahasan)</span><div class="qz-res">'+att.idxs.map(function(ix){var q=Z.qs[ix],a=att.ans[ix],c=qzOk(q,a)?'ok':(qzAns(q,a)?'bad':'skip');return '<button type="button" class="qz-n '+c+'" data-qz="rev" data-i="'+ix+'" aria-label="Soal '+q.n+(c==='ok'?' benar':(c==='bad'?' salah':' kosong'))+'">'+q.n+'</button>';}).join('')+'</div><p class="small" style="margin-top:8px">Hijau benar, merah salah, abu-abu kosong.</p></div>';
+  var wrong=att.idxs.filter(function(ix){return !qzOk(Z.qs[ix],att.ans[ix]);}).length;
+  h+='<div class="btnrow">'+(wrong?'<button type="button" class="btn pri" data-qz="start" data-m="ulang">Ulangi hanya soal salah ('+wrong+')</button>':'')+'<button type="button" class="btn" data-qz="again">Coba lagi dari awal</button></div>';
+  h+=qzHist(st);
+  return h+'</div></div>';
+}
+function qzReview(Z,st){
+  var att=QS.att||st.att[st.att.length-1],ix=att.idxs[QS.ri],Q=Z.qs[ix],a=att.ans[ix],ok=qzOk(Q,a);
+  var h=qzTop(Z,'Pembahasan soal '+Q.n,'<button type="button" class="btn" data-qz="back">Kembali ke hasil</button>');
+  h+='<div class="qz-main"><div class="qz-in">'+qzStim(Z,Q)+qzQBlock(Z,Q,a,false);
+  h+='<div class="qz-box"><p class="qz-ans"><b class="'+(ok?'qz-ok':'qz-bad')+'">'+(ok?'Benar':(qzAns(Q,a)?'Salah':'Tidak dijawab'))+'</b></p><p class="qz-ans"><b>Jawabanmu:</b><br>'+qzAnsTxt(Q,a)+'</p><p class="qz-ans"><b>Kunci:</b><br>'+qzAnsTxt(Q,Q.key)+'</p><button type="button" class="btn" data-qz="exp">'+(QS.exp?'Sembunyikan pembahasan':'Lihat pembahasan')+'</button>'+(QS.exp?'<div class="qz-exp">'+rich(Q.exp)+'</div>':'')+'</div></div></div>';
+  h+='<div class="qz-nav"><button type="button" class="btn" data-qz="rprev"'+(QS.ri===0?' disabled':'')+'>Sebelumnya</button><button type="button" class="btn" data-qz="back">Hasil</button><button type="button" class="btn" data-qz="rnext"'+(QS.ri===att.idxs.length-1?' disabled':'')+'>Berikutnya</button></div>';
+  return h;
+}
+function qzOpenView(id){
+  var st=qzSt(id);QS.id=id;QS.exp=false;QS.armed=false;QS.warned=false;QS.att=null;
+  if(st.cur){QS.view='exam';QS.i=Math.min(st.cur.i||0,st.cur.idxs.length-1);qzTimerOn();}
+  else if(st.att.length){QS.view='result';QS.att=st.att[st.att.length-1];}
+  else QS.view='intro';
+  $('qz').hidden=false;document.documentElement.style.overflow='hidden';qzDraw();
+}
+function qzClose(){clearInterval(QS.iv);QS.iv=null;$('qz').hidden=true;document.documentElement.style.overflow='';QS.id=null;QS.view='';render();}
+function qzTimerOn(){clearInterval(QS.iv);QS.iv=setInterval(qzTick,1000);}
+function qzTick(){
+  if(QS.view!=='exam')return;var Z=qzById(QS.id),st=qzSt(QS.id);if(!Z||!st.cur)return;
+  var tm=qzTimeTxt(Z,st.cur),el=$('qzTime');if(el){el.textContent=tm.t;el.className='qz-time'+(tm.late?' late':'');}
+  if(tm.late&&!QS.warned&&st.cur.mode!=='ulang'){QS.warned=true;try{beep();}catch(e){}}
+}
+function qzStart(mode){
+  var Z=qzById(QS.id),st=qzSt(QS.id),idxs;
+  if(mode==='ulang'){
+    var last=null;for(var i=st.att.length-1;i>=0;i--){if(st.att[i].mode==='full'){last=st.att[i];break;}}
+    if(!last)last=st.att[st.att.length-1];if(!last)return;
+    idxs=last.idxs.filter(function(ix){return !qzOk(Z.qs[ix],last.ans[ix]);});if(!idxs.length)return;
+  }else idxs=Z.qs.map(function(q,i){return i;});
+  st.cur={start:Date.now(),ans:{},fl:{},i:0,mode:mode,idxs:idxs};save();
+  QS.i=0;QS.view='exam';QS.armed=false;QS.warned=false;qzTimerOn();qzDraw();
+}
+function qzCheckTask(Z){DAYS.forEach(function(d){d.t.forEach(function(t,i){if(t[1].indexOf(Z.task)===0)store.c[d.d+'-'+i]=1;});});}
+function qzSubmit(){
+  var Z=qzById(QS.id),st=qzSt(QS.id),cur=st.cur;if(!cur)return;
+  var dur=Math.round((Date.now()-cur.start)/1000),c=0;
+  cur.idxs.forEach(function(ix){if(qzOk(Z.qs[ix],cur.ans[ix]))c++;});
+  var att={t:Date.now(),s:c,n:cur.idxs.length,dur:dur,late:cur.mode==='ulang'?0:Math.max(0,dur-Z.minutes*60),mode:cur.mode,ans:cur.ans,fl:cur.fl,idxs:cur.idxs};
+  st.att.push(att);if(st.att.length>20)st.att.shift();delete st.cur;
+  if(cur.mode==='full')qzCheckTask(Z);
+  save();clearInterval(QS.iv);QS.iv=null;QS.armed=false;QS.view='result';QS.att=att;qzDraw();
+}
+function qzSetAns(val){
+  var st=qzSt(QS.id),cur=st.cur;if(!cur)return;var ix=cur.idxs[QS.i];val(cur,ix);cur.i=QS.i;save();QS.keep=true;qzDraw();
+}
+function qzBtn(t){
+  if(t.t.indexOf('TRY-OUT ')!==0)return '';
+  var id=t.t.indexOf('BINDO')>-1?'bindo':(t.t.indexOf('BING')>-1?'bing':(t.t.indexOf('MATWA')>-1?'matwa':(t.t.indexOf('MATLAN')>-1?'matlan':'')));
+  return id?'<button type="button" class="tgo" style="--c:var(--accent)" data-qz="open" data-q="'+id+'">Buka soal</button>':'';
+}
+function renderQzCard(){
+  if(typeof QZ==='undefined')return;var h='';
+  QZ.forEach(function(Z){
+    var st=qzSt(Z.id),cur=st.cur,best=null,last=st.att[st.att.length-1],stt,btn;
+    st.att.forEach(function(a){if(a.mode==='full'&&(!best||a.s>best.s))best=a;});
+    if(cur){var dn=0;cur.idxs.forEach(function(ix){if(qzAns(Z.qs[ix],cur.ans[ix]))dn++;});stt='Sedang dikerjakan: '+dn+' dari '+cur.idxs.length+' dijawab';btn='Lanjutkan';}
+    else if(last){var b=best||last;stt='Skor terbaik '+b.s+'/'+b.n+' ('+Math.round(b.s/b.n*100)+'%) · '+st.att.length+' percobaan';btn='Buka hasil';}
+    else{stt='Belum dikerjakan';btn='Mulai';}
+    h+='<div class="qzc" style="--c:'+Z.col+'"><b>'+esc(Z.title)+'</b><span class="m2">'+Z.total+' soal · '+Z.minutes+' menit</span><span class="st">'+stt+'</span><div><button type="button" class="btn pri" data-qz="open" data-q="'+Z.id+'">'+btn+'</button></div></div>';
+  });
+  $('qzGrid').innerHTML=h;
+}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-qz]');if(!b||b.disabled)return;var a=b.dataset.qz;
+  if(a==='open'){qzOpenView(b.dataset.q);return;}
+  if(!QS.id)return;
+  var Z=qzById(QS.id),st=qzSt(QS.id);
+  if(a==='close'){qzClose();}
+  else if(a==='exit'){if(st.cur)st.cur.i=QS.i;save();qzClose();}
+  else if(a==='start'){qzStart(b.dataset.m);}
+  else if(a==='again'){QS.att=null;QS.view='intro';qzDraw();}
+  else if(a==='go'){QS.i=Number(b.dataset.j);QS.armed=false;if(st.cur)st.cur.i=QS.i;save();qzDraw();var m=$('qz').querySelector('.qz-main');if(m)m.scrollTop=0;}
+  else if(a==='prev'){if(QS.i>0){QS.i--;QS.armed=false;if(st.cur)st.cur.i=QS.i;save();qzDraw();}}
+  else if(a==='next'){if(st.cur&&QS.i<st.cur.idxs.length-1){QS.i++;QS.armed=false;st.cur.i=QS.i;save();qzDraw();}}
+  else if(a==='flag'){qzSetAns(function(cur,ix){if(cur.fl[ix])delete cur.fl[ix];else cur.fl[ix]=1;});}
+  else if(a==='submit'){
+    if(!QS.armed){QS.armed=true;qzDraw();setTimeout(function(){if(QS.armed){QS.armed=false;if(QS.view==='exam')qzDraw();}},5000);}
+    else qzSubmit();
+  }
+  else if(a==='rev'){var att=QS.att||st.att[st.att.length-1];QS.ri=att.idxs.indexOf(Number(b.dataset.i));if(QS.ri<0)QS.ri=0;QS.exp=false;QS.view='review';qzDraw();var m2=$('qz').querySelector('.qz-main');if(m2)m2.scrollTop=0;}
+  else if(a==='back'){QS.view='result';qzDraw();}
+  else if(a==='exp'){QS.exp=!QS.exp;QS.keep=true;qzDraw();}
+  else if(a==='rprev'){if(QS.ri>0){QS.ri--;QS.exp=false;qzDraw();}}
+  else if(a==='rnext'){var at=QS.att||st.att[st.att.length-1];if(QS.ri<at.idxs.length-1){QS.ri++;QS.exp=false;qzDraw();}}
+});
+document.addEventListener('change',function(e){
+  var t=e.target;if(!t||!t.dataset||!t.dataset.qzIn||!QS.id||QS.view!=='exam')return;
+  var kind=t.dataset.qzIn;
+  qzSetAns(function(cur,ix){
+    if(kind==='pg')cur.ans[ix]=t.value;
+    else if(kind==='mc'){var arr=Array.isArray(cur.ans[ix])?cur.ans[ix].slice():[];var p=arr.indexOf(t.value);if(t.checked&&p<0)arr.push(t.value);if(!t.checked&&p>-1)arr.splice(p,1);cur.ans[ix]=arr;}
+    else{var q=qzById(QS.id).qs[ix],arr2=Array.isArray(cur.ans[ix])?cur.ans[ix].slice():q.sts.map(function(){return null;});arr2[Number(t.dataset.s)]=t.value;cur.ans[ix]=arr2;}
+  });
+});
+
+/* pulihkan timer yang sedang berjalan setelah halaman dibuka lagi */
+(function(){
+  var r=store.r;if(!r||typeof r!=='object')return;
+  T.key=r.key||null;T.total=r.total||1500;T.base=r.base||0;T.label=r.label||'Fokus bebas';T.brk=!!r.brk;seq=r.seq||null;pend=r.pend||null;
+  if(r.t0&&(Date.now()-r.t0)<3*3600*1000){
+    T.t0=r.t0;T.mode='run';
+    if(remain()<=0)finishT();else T.iv=setInterval(tick,250);
+  }else{T.mode='pause';}
+})();
+
+renderCampus();
+render();
+(function(){var s=document.querySelector('#chips .chip.sel');try{if(s)s.scrollIntoView({inline:'center',block:'nearest'});}catch(e){}})();
+})();
+</script>
+</body>
+</html>

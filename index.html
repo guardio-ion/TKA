@@ -43,7 +43,7 @@ h1{font:800 clamp(2.2rem,8vw,3.7rem)/1 var(--font-display);letter-spacing:-.02em
 .big.sm{font-size:2.2rem}
 .unit{font:600 1rem var(--font-display);color:var(--muted)}
 .cd .sub{margin:0;font-size:.9rem}
-.exams{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.exams{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
 @media(max-width:560px){.exams{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .ex{display:grid;gap:2px;text-align:left;background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:0}
 .ex .s{font:700 .95rem var(--font-display);color:var(--c)}
@@ -305,6 +305,10 @@ input[type=text],input[type=number],input[type=time],select,textarea{border-radi
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 .qz-q .sm,.qz-exp{white-space:pre-line}
 .qz-tb{overflow-x:auto;margin:6px 0 10px}.qz-tb table{border-collapse:collapse;width:100%;font-size:.85rem}.qz-tb th,.qz-tb td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}.qz-tb th{background:var(--accent-soft)}
+
+:root{--fis:#0e8a9c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--fis:#5cc6d6}}
+:root[data-theme="dark"]{--fis:#5cc6d6}
 </style>
 </head>
 <body>
@@ -359,7 +363,7 @@ input[type=text],input[type=number],input[type=time],select,textarea{border-radi
           <summary>Tambah tugas sendiri</summary>
           <form id="xf" class="xf" autocomplete="off">
             <label class="fld"><span>Mapel</span>
-              <select id="xs"><option>Matwa</option><option>Matlan</option><option>Bindo</option><option>Bing</option><option>Umum</option></select></label>
+              <select id="xs"><option>Matwa</option><option>Matlan</option><option>Bindo</option><option>Bing</option><option>Fisika</option><option>Umum</option></select></label>
             <label class="fld grow"><span>Tugas</span>
               <input id="xt" type="text" maxlength="120" placeholder="Contoh: ulang soal limit nomor 5-10"></label>
             <label class="fld sm"><span>Menit</span>
@@ -413,7 +417,7 @@ input[type=text],input[type=number],input[type=time],select,textarea{border-radi
       <div class="btnrow"><button type="button" class="btn" id="reset" data-act="reset">Hapus semua centang</button></div>
     </aside>
   </div>
-  <p class="foot">Centang, catatan, tugas tambahan, dan timer tersimpan di perangkat ini. Pada hari ujian jangan belajar materi baru, cukup baca ringkasan dan catatan kesalahan.</p>
+  <p class="foot">Centang, catatan, tugas tambahan, dan timer tersimpan di perangkat ini. Pada hari ujian jangan belajar materi baru, cukup baca ringkasan dan catatan kesalahan. Pengecualian: Fisika, yang memang dipelajari dari nol.</p>
 </div>
 <div class="qz" id="qz" role="dialog" aria-modal="true" aria-label="Try-out" hidden></div>
 <div class="dock" id="dock" hidden>
@@ -430,8 +434,8 @@ input[type=text],input[type=number],input[type=time],select,textarea{border-radi
 </div>
 <script>
 (function(){
-var SUBJ=['Matwa','Matlan','Bindo','Bing'];
-var COL={Matwa:'var(--matwa)',Matlan:'var(--matlan)',Bindo:'var(--bindo)',Bing:'var(--bing)',Ujian:'var(--ujian)',Umum:'var(--umum)'};
+var SUBJ=['Matwa','Matlan','Bindo','Bing','Fisika'];
+var COL={Matwa:'var(--matwa)',Matlan:'var(--matlan)',Bindo:'var(--bindo)',Bing:'var(--bing)',Fisika:'var(--fis)',Ujian:'var(--ujian)',Umum:'var(--umum)'};
 var DAYS=[
 {d:21,n:'Rabu',tag:'Sudah dikerjakan',t:[
 ['Bindo','Baca Bindo Titik Lemah bagian 1 (kata serapan)',20],
@@ -480,21 +484,26 @@ var DAYS=[
 ['Matlan','Garis singgung lingkaran: baca bagian 6, lalu kerjakan soal 26-29 (cukup 2 soal jika waktu mepet)',40],
 ['Umum','Makan malam dan istirahat',30],
 ['Matwa','TRY-OUT TAMBAHAN MATWA: pilih sesuai kelemahan di try-out utama tadi. Lemah data, peluang, geometri: Matwa 3. Lemah aljabar, bilangan, trigonometri: Matwa 2. 30 soal dalam 90 menit tanpa buka catatan dan kalkulator, lalu koreksi 30 menit',120],
-['Matwa','Baca ringkasan rumus dan catatan kesalahan Matwa untuk besok pagi, tanpa soal baru',20],
+['Fisika','Fisika dari nol, Listrik Arus Searah: baca rangkuman bagian 1 (35 menit), lalu kerjakan soal Try-Out Fisika 1 nomor 13-14 dan Fisika 2 nomor 15 (25 menit)',60],
 ['Umum','Tidur sebelum 21.30',0]]},
 {d:28,n:'Rabu',tag:'UJIAN MATWA',u:'Hari ini ujian Matwa',t:[
 ['Matwa','Pagi: baca ringkasan rumus saja (range, deret, bunga, data, peluang)',20,'06:00'],
 ['Ujian','Ujian Matwa',0],
 ['Umum','Ujian selesai sekitar 13.00. Makan dan istirahat sampai 15.00',0],
-['Matlan','TRY-OUT MATLAN (file TryOut_Matlan_30_Soal): 30 soal dalam 90 menit tanpa buka catatan dan kalkulator, lalu koreksi dan isi peta kelemahan 30 menit',120,'15:00'],
+['Matlan','TRY-OUT MATLAN (file TryOut_Matlan_30_Soal): 30 soal dalam 90 menit tanpa buka catatan dan kalkulator, lalu koreksi soal yang salah saja dan isi peta kelemahan 15 menit',105,'15:00'],
+['Matlan','Ulangi soal Matlan yang salah di try-out, lalu tulis lembar rumus 1 halaman untuk dibaca besok pagi',30],
 ['Umum','Makan malam dan istirahat',30],
-['Matlan','TRY-OUT TAMBAHAN MATLAN LANJUT 2 (sangat sulit): 30 soal dalam 90 menit tanpa buka catatan dan kalkulator, lalu koreksi 30 menit',120],
-['Matlan','Ulangi soal Matlan yang salah di kedua try-out, lalu tulis lembar rumus 1 halaman untuk dibaca besok pagi',40],
-['Matlan','Baca ulang peta kelemahan dan catatan kesalahan Matlan sebelum tidur',15],
+['Fisika','Fluida: baca rangkuman bagian 2 (35 menit), lalu kerjakan soal Try-Out Fisika 1 nomor 6-7 dan Fisika 2 nomor 11-12 (25 menit)',60],
+['Fisika','Kalor dan pemanasan global: baca rangkuman bagian 3 (35 menit), lalu kerjakan soal Try-Out Fisika 1 nomor 8-9 dan 15, serta Fisika 2 nomor 13-14 (25 menit)',60],
+['Fisika','Gelombang bunyi dan cahaya: baca rangkuman bagian 4 (35 menit), lalu kerjakan soal Try-Out Fisika 1 nomor 10-12 (25 menit)',60],
+['Matlan','Baca ulang lembar rumus dan catatan kesalahan Matlan sebelum tidur',15],
 ['Umum','Tidur sebelum 21.30',0]]},
-{d:29,n:'Kamis',tag:'UJIAN MATLAN',u:'Hari ini ujian Matlan',t:[
-['Matlan','Pagi: baca lembar rumus (matriks, teorema sisa, range dan asimtot, grafik trigonometri, vektor, garis singgung, limit) dan catatan kesalahan',30],
+{d:29,n:'Kamis',tag:'UJIAN MATLAN + FISIKA',u:'Hari ini ujian Matlan lalu Fisika',t:[
+['Matlan','Pagi: baca lembar rumus (matriks, teorema sisa, range dan asimtot, grafik trigonometri, vektor, garis singgung, limit) dan catatan kesalahan',30,'05:30'],
+['Fisika','Gerak lurus dan Hukum Newton: baca rangkuman bagian 5 (30 menit), lalu kerjakan soal Try-Out Fisika 1 nomor 1-5 (20 menit)',50],
+['Fisika','Baca ulang rumus ringkas Fisika: listrik, fluida, kalor, gelombang, gerak lurus, Newton. Tanpa soal baru',25],
 ['Ujian','Ujian Matlan',0],
+['Ujian','Ujian Fisika',0],
 ['Umum','Selesai. Istirahat dan rayakan.',0]]}
 ];
 var BAG=['Kartu ujian dan kartu identitas','Alat tulis','Botol minum','Pakaian ujian, disiapkan semalam','Sarapan dan cek jam berangkat','Cek lokasi dan jam masuk ruang ujian'];
@@ -522,6 +531,7 @@ function getDay(d){return DAYS.filter(function(x){return x.d===d;})[0];}
 function fmt(m){if(m<=0)return'selesai';return fmtM(m);}
 function fmtM(m){if(m<=0)return'0 menit';var h=Math.floor(m/60),r=m%60;return((h?h+' jam ':'')+(r?r+' menit':'')).trim();}
 function dleft(d){var n=new Date();var a=Date.UTC(n.getFullYear(),n.getMonth(),n.getDate());return Math.round((Date.UTC(2026,9,d)-a)/864e5);}
+function exSubs(d){return d.t.filter(function(t){return t[0]==='Ujian';}).map(function(t){return t[1].replace('Ujian ','');});}
 function exSub(d){return d.t.filter(function(t){return t[0]==='Ujian';})[0][1].replace('Ujian ','');}
 function tasks(day){
   var a=day.t.map(function(t,i){return{k:day.d+'-'+i,s:t[0],t:t[1],m:t[2],c:false,at:t[3]};});
@@ -598,7 +608,7 @@ function renderCD(){
   else{
     var n=dleft(nx.d);
     h='<p class="lab">Ujian berikutnya</p><div class="row1">'+(n>0?'<span class="big">'+n+'</span><span class="unit">hari lagi</span>':'<span class="big sm">Hari ini</span>')+'</div>'+
-      '<p class="sub"><b>'+esc(exSub(nx))+'</b> · '+nx.n+', '+nx.d+' Okt'+(n===0?'. Tarik napas, kamu sudah siap.':'')+'</p>';
+      '<p class="sub"><b>'+esc(exSubs(nx).join(' lalu '))+'</b> · '+nx.n+', '+nx.d+' Okt'+(n===0?'. Tarik napas, kamu sudah siap.':'')+'</p>';
   }
   $('cd').innerHTML=h;
 }
@@ -606,8 +616,10 @@ function renderExams(){
   var h='';
   DAYS.forEach(function(d){
     if(!d.u)return;
-    var n=dleft(d.d),sub=exSub(d),st=n>0?'H-'+n:(n===0?'Hari ini':'Selesai');
+    var n=dleft(d.d),st=n>0?'H-'+n:(n===0?'Hari ini':'Selesai');
+    exSubs(d).forEach(function(sub){
     h+='<button type="button" class="ex'+(n===0?' now':'')+(n<0?' past':'')+(d.d===sel?' sel':'')+'" style="--c:'+COL[sub]+'" data-act="day" data-scroll="1" data-d="'+d.d+'"><span class="s">'+esc(sub)+'</span><span class="d">'+d.n.slice(0,3)+', '+d.d+' Okt</span><span class="h">'+st+'</span></button>';
+    });
   });
   $('exams').innerHTML=h;
 }
@@ -625,7 +637,7 @@ function renderDay(){
   var h='<div class="dh"><div><h2>'+day.n+', '+day.d+' Okt</h2><span class="badge'+(day.u?' ex':'')+'">'+esc(day.tag)+'</span></div><span class="cnt">'+s.done+'/'+s.total+'</span></div>';
   h+='<div class="bar"><i style="width:'+pct+'%"></i></div>';
   h+='<div class="row"><span>Sisa waktu belajar</span><b>'+fmt(s.left)+'</b></div>';
-  if(day.u)h+='<div class="ujian">'+esc(day.u)+'. Jangan belajar materi baru.</div>';
+  if(day.u)h+='<div class="ujian">'+esc(day.u)+'. Jangan belajar materi baru, kecuali Fisika.</div>';
   if(s.total&&s.done===s.total)h+='<div class="done-msg">Semua tugas hari ini selesai. Mantap, Evan!</div>';
   $('dayHead').innerHTML=h;
   var fh='';['Semua'].concat(SUBJ).forEach(function(f){fh+='<button type="button" class="pill" data-act="filter" data-s="'+f+'" aria-pressed="'+(f===flt)+'">'+f+'</button>';});

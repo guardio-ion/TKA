@@ -473,18 +473,23 @@ var DAYS=[
 ['Matwa','Ulangi soal Matwa yang salah: range, deret, bunga, data (cukup 20 menit)',20],
 ['Umum','Tidur 7 jam atau lebih',0]]},
 {d:27,n:'Selasa',tag:'UJIAN BING',u:'Hari ini ujian Bing',t:[
-['Bing','Pagi: baca Peta Content dan catatan kesalahan Bing, tanpa soal baru',20],
+['Bing','Pagi: baca Peta Content dan catatan kesalahan Bing, tanpa soal baru (sudah lewat)',0],
 ['Ujian','Ujian Bing',0],
-['Umum','Istirahat 1 jam',60],
-['Matwa','TRY-OUT MATWA (file TryOut_Matwa_30_Soal): 30 soal dalam 90 menit tanpa buka catatan dan kalkulator, lalu koreksi dan isi peta kelemahan 30 menit',120],
+['Umum','Ujian selesai jam 13.00. Makan dan istirahat sampai 15.00',0],
+['Matwa','TRY-OUT MATWA (file TryOut_Matwa_30_Soal): 30 soal dalam 90 menit tanpa buka catatan dan kalkulator, lalu koreksi dan isi peta kelemahan 30 menit',120,'15:00'],
 ['Matlan','Garis singgung lingkaran: baca bagian 6, lalu kerjakan soal 26-29 (cukup 2 soal jika waktu mepet)',40],
-['Umum','Tidur 7 jam atau lebih',0]]},
+['Umum','Makan malam dan istirahat',30],
+['Matwa','TRY-OUT TAMBAHAN MATWA: pilih sesuai kelemahan di try-out utama tadi. Lemah data, peluang, geometri: Matwa 3. Lemah aljabar, bilangan, trigonometri: Matwa 2. 30 soal dalam 90 menit tanpa buka catatan dan kalkulator, lalu koreksi 30 menit',120],
+['Matwa','Baca ringkasan rumus dan catatan kesalahan Matwa untuk besok pagi, tanpa soal baru',20],
+['Umum','Tidur sebelum 21.30',0]]},
 {d:28,n:'Rabu',tag:'UJIAN MATWA',u:'Hari ini ujian Matwa',t:[
-['Matwa','Pagi: baca ringkasan rumus saja (range, deret, bunga, data, peluang)',20],
+['Matwa','Pagi: baca ringkasan rumus saja (range, deret, bunga, data, peluang)',20,'06:00'],
 ['Ujian','Ujian Matwa',0],
-['Umum','Istirahat 1 jam',60],
-['Matlan','TRY-OUT MATLAN (file TryOut_Matlan_30_Soal): 30 soal dalam 90 menit tanpa buka catatan dan kalkulator, lalu koreksi dan isi peta kelemahan 30 menit',120],
-['Matlan','Ulangi soal Matlan yang salah di try-out, lalu tulis lembar rumus 1 halaman untuk dibaca besok pagi',40],
+['Umum','Ujian selesai sekitar 13.00. Makan dan istirahat sampai 15.00',0],
+['Matlan','TRY-OUT MATLAN (file TryOut_Matlan_30_Soal): 30 soal dalam 90 menit tanpa buka catatan dan kalkulator, lalu koreksi dan isi peta kelemahan 30 menit',120,'15:00'],
+['Umum','Makan malam dan istirahat',30],
+['Matlan','TRY-OUT TAMBAHAN MATLAN LANJUT 2 (sangat sulit): 30 soal dalam 90 menit tanpa buka catatan dan kalkulator, lalu koreksi 30 menit',120],
+['Matlan','Ulangi soal Matlan yang salah di kedua try-out, lalu tulis lembar rumus 1 halaman untuk dibaca besok pagi',40],
 ['Matlan','Baca ulang peta kelemahan dan catatan kesalahan Matlan sebelum tidur',15],
 ['Umum','Tidur sebelum 21.30',0]]},
 {d:29,n:'Kamis',tag:'UJIAN MATLAN',u:'Hari ini ujian Matlan',t:[
@@ -519,7 +524,7 @@ function fmtM(m){if(m<=0)return'0 menit';var h=Math.floor(m/60),r=m%60;return((h
 function dleft(d){var n=new Date();var a=Date.UTC(n.getFullYear(),n.getMonth(),n.getDate());return Math.round((Date.UTC(2026,9,d)-a)/864e5);}
 function exSub(d){return d.t.filter(function(t){return t[0]==='Ujian';})[0][1].replace('Ujian ','');}
 function tasks(day){
-  var a=day.t.map(function(t,i){return{k:day.d+'-'+i,s:t[0],t:t[1],m:t[2],c:false};});
+  var a=day.t.map(function(t,i){return{k:day.d+'-'+i,s:t[0],t:t[1],m:t[2],c:false,at:t[3]};});
   var xs=Array.isArray(store.x[day.d])?store.x[day.d]:[];
   xs.forEach(function(u){a.push({k:'x'+u.id,s:u.s,t:u.t,m:u.m,c:true,id:u.id});});
   return a;
@@ -528,11 +533,12 @@ function stat(day){var done=0,left=0,doneM=0,ts=tasks(day);ts.forEach(function(t
 function full(d){var s=stat(d);return s.total>0&&s.done===s.total;}
 function timed(t){return t.m>0&&t.s!=='Ujian';}
 function hm(min){min=((Math.round(min)%1440)+1440)%1440;var h=Math.floor(min/60),m=min%60;return(h<10?'0':'')+h+':'+(m<10?'0':'')+m;}
-function startMin(day){var v=store.s[day.d]||(day.u?'06:00':'15:00');var p=String(v).split(':');return(parseInt(p[0],10)||0)*60+(parseInt(p[1],10)||0);}
+function startMin(day){var v=store.s[day.d];if(!v){var f=day.t.filter(function(t){return t[2]>0&&t[0]!=='Ujian'&&t[3];})[0];v=f?f[3]:(day.u?'06:00':'15:00');}var p=String(v).split(':');return(parseInt(p[0],10)||0)*60+(parseInt(p[1],10)||0);}
 function clocks(day,ts){
   var cur=startMin(day),map={};
   ts.forEach(function(t,i){
     if(!timed(t))return;
+    if(t.at&&!store.s[day.d]){var q=t.at.split(':');cur=(+q[0])*60+(+q[1]);}
     map[t.k]=hm(cur)+'–'+hm(cur+t.m);cur+=t.m;
     if(SUBJ.indexOf(t.s)>-1&&ts.slice(i+1).some(timed))cur+=store.o.brk;
   });
@@ -1044,7 +1050,10 @@ function qzStart(mode){
   st.cur={start:Date.now(),ans:{},fl:{},i:0,mode:mode,idxs:idxs};save();
   QS.i=0;QS.view='exam';QS.armed=false;QS.warned=false;qzTimerOn();qzDraw();
 }
-function qzCheckTask(Z){DAYS.forEach(function(d){d.t.forEach(function(t,i){if(t[1].indexOf(Z.task)>-1)store.c[d.d+'-'+i]=1;});});}
+function qzCheckTask(Z){
+  var X=(Z.id==='matwa2'||Z.id==='matwa3'||Z.id==='matwa4')?'TAMBAHAN MATWA':(Z.id==='matlan2'?'TAMBAHAN MATLAN':'#');
+  DAYS.forEach(function(d){d.t.forEach(function(t,i){if(t[1].indexOf(Z.task)>-1||t[1].indexOf(X)>-1)store.c[d.d+'-'+i]=1;});});
+}
 function qzSubmit(){
   var Z=qzById(QS.id),st=qzSt(QS.id),cur=st.cur;if(!cur)return;
   var dur=Math.round((Date.now()-cur.start)/1000),c=0;
@@ -1059,8 +1068,11 @@ function qzSetAns(val){
 }
 function qzBtn(t){
   if(t.t.indexOf('TRY-OUT ')<0)return '';
+  function b(id,l){return '<button type="button" class="tgo" style="--c:var(--accent)" data-qz="open" data-q="'+id+'">'+l+'</button>';}
+  if(t.t.indexOf('TAMBAHAN MATWA')>-1)return b('matwa3','Buka Matwa 3')+b('matwa2','Buka Matwa 2');
+  if(t.t.indexOf('TAMBAHAN MATLAN')>-1)return b('matlan2','Buka soal');
   var id=t.t.indexOf('MATWA')>-1?'matwa':(t.t.indexOf('MATLAN')>-1?'matlan':'');
-  return id?'<button type="button" class="tgo" style="--c:var(--accent)" data-qz="open" data-q="'+id+'">Buka soal</button>':'';
+  return id?b(id,'Buka soal'):'';
 }
 function renderQzCard(){
   if(typeof QZ==='undefined')return;var h='';
